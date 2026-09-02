@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Origen & Finca | Cafés de Especialidad</title>
+  <title>Alma del Eje | Cafés de Finca & Especialidad</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +19,6 @@
               verde: '#1A3326',
               verdeOscuro: '#112219',
               pergamino: '#F6F3EC',
-              lienzo: '#ECE6D9',
               lacre: '#B87D3B',
               lacreHover: '#9E6629',
               teja: '#8E382B',
@@ -36,76 +33,106 @@
       }
     }
   </script>
-  
+
   <style>
-    .texture-bg {
-      background-color: #F6F3EC;
-      background-image: radial-gradient(#1a3326 0.45px, transparent 0.45px), radial-gradient(#1a3326 0.45px, #F6F3EC 0.45px);
-      background-size: 18px 18px;
-      background-position: 0 0, 9px 9px;
-      background-opacity: 0.04;
+    /* Efecto 3D interactivo */
+    .perspective-container { perspective: 1000px; }
+    .bag-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
-    .custom-scroll::-webkit-scrollbar { width: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #B87D3B; border-radius: 4px; }
   </style>
 </head>
 
-<body class="bg-hacienda-pergamino text-hacienda-carbon font-sans antialiased selection:bg-hacienda-lacre selection:text-white">
+<body class="bg-hacienda-pergamino text-hacienda-carbon font-sans antialiased">
 
-  <!-- HEADER / NAVEGACIÓN -->
-  <header class="sticky top-0 z-40 bg-hacienda-verde text-hacienda-pergamino border-b border-hacienda-lacre/30 backdrop-blur-md">
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-hacienda-verde text-hacienda-pergamino border-b border-hacienda-lacre/30">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <div>
-        <span class="text-xs uppercase tracking-[0.3em] text-hacienda-lacre font-medium block">Tueste Artesanal de Origen</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] text-hacienda-lacre font-bold block">Tostaduría Artesanal</span>
         <h1 class="font-serif text-2xl font-bold tracking-wider text-white">ALMA DEL EJE</h1>
       </div>
       
-      <button onclick="toggleCart()" class="relative flex items-center gap-3 bg-hacienda-verdeOscuro hover:bg-hacienda-lacre transition-colors duration-300 py-2.5 px-5 rounded-full border border-hacienda-lacre/40">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-hacienda-lacre group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button onclick="toggleCart()" class="flex items-center gap-3 bg-hacienda-verdeOscuro hover:bg-hacienda-lacre transition-colors py-2.5 px-5 rounded-full border border-hacienda-lacre/40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-hacienda-lacre" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
         </svg>
-        <span class="font-medium text-sm">Reserva</span>
+        <span class="text-sm font-medium">Pedido</span>
         <span id="cart-count" class="bg-hacienda-lacre text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
       </button>
     </div>
   </header>
 
-  <!-- HERO STORYTELLING -->
-  <section class="relative bg-hacienda-verde text-hacienda-pergamino py-20 px-6 overflow-hidden">
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 border border-hacienda-lacre/40 rounded-full px-4 py-1 mb-6">
-        <span class="w-2 h-2 rounded-full bg-hacienda-lacre"></span>
-        <span class="text-xs uppercase tracking-widest text-hacienda-lacre">Importación Directa & Microlotes</span>
-      </div>
-      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white mb-6">
-        De las Haciendas del Eje a tu Taza
-      </h2>
-      <p class="text-base md:text-lg text-hacienda-pergamino/80 font-light max-w-2xl mx-auto">
-        Tostamos bajo demanda grano a grano respetando el terruño, la altura y los perfiles de fermentación más exquisitos.
-      </p>
-    </div>
-  </section>
-
-  <!-- CATÁLOGO DE LOTES -->
-  <main class="max-w-7xl mx-auto px-6 py-16">
+  <!-- CATÁLOGO -->
+  <main class="max-w-7xl mx-auto px-6 py-14">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-hacienda-carbon/10 pb-6">
       <div>
-        <h3 class="font-serif text-3xl font-bold text-hacienda-verde">Cosechas Disponibles</h3>
-        <p class="text-sm text-hacienda-carbon/60 mt-1">Lotes calibrados con stock sincronizado en tiempo real</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-hacienda-verde">Cosechas Disponibles</h2>
+        <p class="text-sm text-hacienda-carbon/60 mt-1">Haz clic en cualquier café para ver su empaque 360º e historia</p>
       </div>
       <span class="text-xs tracking-widest uppercase text-hacienda-lacre font-bold mt-4 md:mt-0">
         100% Arábica de Especialidad
       </span>
     </div>
 
-    <!-- Grid de Productos -->
+    <!-- Grid de Cafés -->
     <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Skeleton Loader -->
-      <div class="animate-pulse bg-white p-6 rounded-2xl border border-hacienda-carbon/10 h-[500px]"></div>
-      <div class="animate-pulse bg-white p-6 rounded-2xl border border-hacienda-carbon/10 h-[500px]"></div>
-      <div class="animate-pulse bg-white p-6 rounded-2xl border border-hacienda-carbon/10 h-[500px]"></div>
+      <!-- Se carga dinámicamente -->
     </div>
   </main>
+
+  <!-- MODAL EXPERIENCIA 360º & DETALLE DEL DOC -->
+  <div id="modal-detail" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="bg-hacienda-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border border-hacienda-lacre/30 flex flex-col md:flex-row max-h-[90vh]">
+      
+      <!-- Lado Izquierdo: Visor 360 Interactible -->
+      <div class="md:w-1/2 bg-hacienda-verde p-8 flex flex-col items-center justify-center relative perspective-container select-none">
+        <span class="absolute top-4 left-4 text-[10px] tracking-widest uppercase bg-hacienda-lacre text-white px-3 py-1 rounded-full font-bold">
+          Visor 360º Interactivo
+        </span>
+        
+        <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-64 h-80 flex items-center justify-center">
+          <img id="modal-img" src="./filandia-reserva.png" alt="Empaque de Café" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
+        </div>
+        
+        <p class="text-xs text-hacienda-pergamino/60 mt-4 flex items-center gap-2">
+          <span>🔄 Arrastra con el ratón o el dedo para girar</span>
+        </p>
+      </div>
+
+      <!-- Lado Derecho: Historia del Doc y Ficha Técnica -->
+      <div class="md:w-1/2 p-8 overflow-y-auto flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start">
+            <span id="modal-origen" class="text-xs uppercase tracking-widest text-hacienda-lacre font-bold"></span>
+            <button onclick="closeModal()" class="text-2xl text-hacienda-carbon/40 hover:text-hacienda-carbon">&times;</button>
+          </div>
+          
+          <h3 id="modal-title" class="font-serif text-2xl md:text-3xl font-bold text-hacienda-verde mt-1 mb-2"></h3>
+          <p id="modal-specs" class="text-xs text-hacienda-carbon/60 mb-6"></p>
+
+          <h4 class="text-xs font-bold uppercase tracking-wider text-hacienda-carbon/80 mb-2 border-b border-hacienda-carbon/10 pb-1">
+            Historia & Perfil de Cosecha (Google Doc)
+          </h4>
+          <p id="modal-story" class="text-sm text-hacienda-carbon/80 leading-relaxed font-light whitespace-pre-line">
+            <!-- Texto sincronizado del Doc -->
+          </p>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-hacienda-carbon/10 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-hacienda-carbon/50 block">Precio desde</span>
+            <span id="modal-price" class="font-serif text-2xl font-bold text-hacienda-verde"></span>
+          </div>
+          <button onclick="closeModal()" class="bg-hacienda-verde hover:bg-hacienda-verdeOscuro text-white px-6 py-2.5 rounded-xl text-sm font-medium transition-all">
+            Volver a la Tienda
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- DRAWER DEL CARRITO -->
   <div id="cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
@@ -115,9 +142,7 @@
           <h4 class="font-serif text-xl font-bold text-hacienda-verde">Tu Pedido</h4>
           <button onclick="toggleCart()" class="text-hacienda-carbon/50 hover:text-hacienda-carbon text-2xl">&times;</button>
         </div>
-        <div id="cart-items" class="mt-6 space-y-4 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
-          <!-- Items del carrito -->
-        </div>
+        <div id="cart-items" class="mt-6 space-y-4 max-h-[60vh] overflow-y-auto pr-2"></div>
       </div>
 
       <div class="border-t border-hacienda-carbon/10 pt-4 space-y-4">
@@ -125,7 +150,7 @@
           <span>Total</span>
           <span id="cart-total">0.00 €</span>
         </div>
-        <button onclick="checkout()" id="btn-checkout" class="w-full bg-hacienda-verde hover:bg-hacienda-verdeOscuro text-white py-4 rounded-xl font-medium tracking-wide transition-all shadow-md hover:shadow-lg">
+        <button onclick="checkout()" id="btn-checkout" class="w-full bg-hacienda-verde hover:bg-hacienda-verdeOscuro text-white py-4 rounded-xl font-medium tracking-wide transition-all shadow-md">
           Confirmar y Tostar Pedido
         </button>
       </div>
@@ -133,10 +158,9 @@
   </div>
 
   <script>
-    // URL DE TU IMPLEMENTACIÓN DE GOOGLE APPS SCRIPT
+    // URL DE TU APPS SCRIPT
     const APPS_SCRIPT_URL = "TU_APPS_SCRIPT_WEB_APP_URL_AQUI";
 
-    // Datos simulados de respaldo en caso de prueba inicial
     const MOCK_DATA = [
       {
         idLote: "COL-26-001",
@@ -145,10 +169,11 @@
         variedad: "Caturra Chiroso",
         proceso: "Lavado Clásico",
         altura: "1.850 msnm",
-        stockKg: 45.5,
-        estado: "Activo",
+        imagenUrl: "./filandia-reserva.png",
+        historia: "Cultivado en las laderas de Filandia bajo sombra nativa de guamos y plátano. Este lote destaca por su perfil limpio, acidez de mandarina madura y notas profundas a chocolate amargo y caramelo.",
         notasCatas: ["Caramelo", "Flor de Naranja", "Chocolate Amargo"],
-        precios: { "250g": 11.50, "500g": 21.00, "1000g": 38.00 }
+        precios: { "250g": 11.50, "500g": 21.00, "1000g": 38.00 },
+        estado: "Activo"
       },
       {
         idLote: "COL-26-002",
@@ -157,10 +182,11 @@
         variedad: "Gesha Imperial",
         proceso: "Honey Anaeróbico",
         altura: "1.920 msnm",
-        stockKg: 12.0,
-        estado: "Últimas Unidades",
+        imagenUrl: "./filandia-reserva.png",
+        historia: "Fermentación controlada en cereza durante 48 horas en tanques sellados. Una taza exuberante, floral con recuerdos a jazmín silvestre y miel fresca de montaña.",
         notasCatas: ["Jazmín", "Miel de Azahar", "Melocotón"],
-        precios: { "250g": 16.50, "500g": 31.00, "1000g": 58.00 }
+        precios: { "250g": 16.50, "500g": 31.00, "1000g": 58.00 },
+        estado: "Últimas Unidades"
       },
       {
         idLote: "BRA-26-001",
@@ -169,32 +195,27 @@
         variedad: "Bourbon Amarillo",
         proceso: "Natural Tradicional",
         altura: "1.250 msnm",
-        stockKg: 80.0,
-        estado: "Activo",
+        imagenUrl: "./filandia-reserva.png",
+        historia: "Secado en patios africanos al sol. Cuerpo redondo, cremoso, con un dulzor marcado a panela y frutos secos tostados.",
         notasCatas: ["Avellana", "Panela", "Cacao 70%"],
-        precios: { "250g": 9.80, "500g": 18.50, "1000g": 34.00 }
+        precios: { "250g": 9.80, "500g": 18.50, "1000g": 34.00 },
+        estado: "Activo"
       }
     ];
 
     let catalogo = [];
     let carrito = [];
 
-    // Cargar Catálogo
     async function loadCatalog() {
       try {
         if(APPS_SCRIPT_URL !== "TU_APPS_SCRIPT_WEB_APP_URL_AQUI") {
           const res = await fetch(APPS_SCRIPT_URL);
-          const resJson = await res.json();
-          if(resJson.status === "success") {
-            catalogo = resJson.data;
-          } else {
-            catalogo = MOCK_DATA;
-          }
+          const data = await res.json();
+          catalogo = data.status === "success" ? data.data : MOCK_DATA;
         } else {
           catalogo = MOCK_DATA;
         }
-      } catch (err) {
-        console.warn("Usando catálogo local...", err);
+      } catch (e) {
         catalogo = MOCK_DATA;
       }
       renderCatalog();
@@ -206,11 +227,10 @@
 
       catalogo.forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white rounded-3xl border border-hacienda-carbon/10 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between";
-        
+        card.className = "bg-white rounded-3xl border border-hacienda-carbon/10 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group";
+
         card.innerHTML = `
-          <div class="p-8">
-            <!-- Badge Superior -->
+          <div class="p-8 pb-0">
             <div class="flex justify-between items-start mb-4">
               <span class="text-xs uppercase tracking-widest font-semibold text-hacienda-lacre">${item.pais} · ${item.variedad}</span>
               <span class="text-[11px] px-2.5 py-0.5 rounded-full font-bold ${item.estado === 'Últimas Unidades' ? 'bg-hacienda-teja/10 text-hacienda-teja' : 'bg-hacienda-verde/10 text-hacienda-verde'}">
@@ -218,53 +238,47 @@
               </span>
             </div>
 
-            <h4 class="font-serif text-2xl font-bold text-hacienda-verde mb-1">${item.regionFinca}</h4>
-            <p class="text-xs text-hacienda-carbon/60 mb-6">Proceso: <span class="font-medium text-hacienda-carbon">${item.proceso}</span> · Altura: <span class="font-medium text-hacienda-carbon">${item.altura}</span></p>
-
-            <!-- Notas de Cata -->
-            <div class="flex flex-wrap gap-1.5 mb-8">
-              ${item.notasCatas.map(nota => `<span class="bg-hacienda-pergamino text-hacienda-carbon/80 text-xs px-3 py-1 rounded-md border border-hacienda-carbon/5">${nota}</span>`).join('')}
+            <!-- Imagen del Empaque (Click abre Modal 360) -->
+            <div onclick="openModal('${item.idLote}')" class="cursor-pointer my-4 flex items-center justify-center h-48 bg-hacienda-pergamino/50 rounded-2xl group-hover:bg-hacienda-pergamino transition-colors overflow-hidden relative">
+              <img src="${item.imagenUrl}" alt="${item.regionFinca}" class="h-44 object-contain group-hover:scale-105 transition-transform duration-300" />
+              <span class="absolute bottom-2 text-[10px] tracking-wider uppercase text-hacienda-carbon/50 bg-white/80 px-2 py-0.5 rounded-full">Ver 360º & Historia</span>
             </div>
 
-            <!-- Selectores de Configuración -->
+            <h4 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-2xl font-bold text-hacienda-verde mb-1 hover:text-hacienda-lacre transition-colors">${item.regionFinca}</h4>
+            <p class="text-xs text-hacienda-carbon/60 mb-4">${item.proceso} · ${item.altura}</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              ${item.notasCatas.map(n => `<span class="bg-hacienda-pergamino text-hacienda-carbon/80 text-xs px-2.5 py-1 rounded-md">${n}</span>`).join('')}
+            </div>
+
+            <!-- Formato & Molienda -->
             <div class="space-y-4 pt-4 border-t border-hacienda-carbon/10">
-              <!-- Selector Gramaje -->
-              <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-hacienda-carbon/70 mb-2">Formato</label>
-                <div class="grid grid-cols-3 gap-2" id="format-${item.idLote}">
-                  <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="btn-format py-2 text-xs font-medium rounded-lg border border-hacienda-verde bg-hacienda-verde text-white transition-all">250g</button>
-                  <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="btn-format py-2 text-xs font-medium rounded-lg border border-hacienda-carbon/20 hover:border-hacienda-verde transition-all">500g</button>
-                  <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="btn-format py-2 text-xs font-medium rounded-lg border border-hacienda-carbon/20 hover:border-hacienda-verde transition-all">1 Kg</button>
-                </div>
+              <div class="grid grid-cols-3 gap-2" id="format-${item.idLote}">
+                <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1.5 text-xs font-medium rounded-lg border border-hacienda-verde bg-hacienda-verde text-white">250g</button>
+                <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1.5 text-xs font-medium rounded-lg border border-hacienda-carbon/20">500g</button>
+                <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1.5 text-xs font-medium rounded-lg border border-hacienda-carbon/20">1 Kg</button>
               </div>
 
-              <!-- Selector Molienda -->
-              <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-hacienda-carbon/70 mb-2">Tipo de Molienda</label>
-                <select id="grind-${item.idLote}" class="w-full bg-hacienda-pergamino border border-hacienda-carbon/20 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-hacienda-verde">
-                  <option value="Grano Entero">Grano Entero (Tueste Fresco)</option>
-                  <option value="Espresso">Molido Fino (Espresso / Moka)</option>
-                  <option value="Filtro V60/Chemex">Molido Medio (Filtro / V60 / Drip)</option>
-                  <option value="Prensa Francesa">Molido Grueso (Prensa Francesa / Cold Brew)</option>
-                </select>
-              </div>
+              <select id="grind-${item.idLote}" class="w-full bg-hacienda-pergamino border border-hacienda-carbon/20 rounded-xl px-3 py-2 text-xs">
+                <option value="Grano Entero">Grano Entero (Tueste Fresco)</option>
+                <option value="Espresso">Molido Espresso</option>
+                <option value="Filtro V60/Chemex">Molido Filtro / V60</option>
+                <option value="Prensa Francesa">Molido Prensa Francesa</option>
+              </select>
             </div>
           </div>
 
-          <!-- Footer Card / Compra -->
-          <div class="p-8 pt-0 flex items-center justify-between mt-4">
+          <div class="p-8 pt-6 flex items-center justify-between">
             <div>
               <span class="text-xs text-hacienda-carbon/50 block">Precio</span>
               <span id="price-${item.idLote}" class="text-2xl font-bold font-serif text-hacienda-verde">${item.precios['250g'].toFixed(2)} €</span>
             </div>
-            <button onclick="addToCart('${item.idLote}')" class="bg-hacienda-lacre hover:bg-hacienda-lacreHover text-white px-6 py-3 rounded-xl font-medium text-sm transition-all flex items-center gap-2 shadow-sm">
+            <button onclick="addToCart('${item.idLote}')" class="bg-hacienda-lacre hover:bg-hacienda-lacreHover text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-all shadow-sm">
               Añadir
             </button>
           </div>
         `;
         grid.appendChild(card);
-
-        // Guardar selecciones por defecto en el DOM
         card.dataset.selectedFormat = "250g";
         card.dataset.selectedPrice = item.precios['250g'];
       });
@@ -272,31 +286,74 @@
 
     function setFormat(idLote, format, price) {
       const container = document.getElementById(`format-${idLote}`);
-      const buttons = container.querySelectorAll("button");
-      buttons.forEach(b => {
-        b.className = "btn-format py-2 text-xs font-medium rounded-lg border border-hacienda-carbon/20 hover:border-hacienda-verde transition-all";
-      });
-      event.target.className = "btn-format py-2 text-xs font-medium rounded-lg border border-hacienda-verde bg-hacienda-verde text-white transition-all";
-      
+      container.querySelectorAll("button").forEach(b => b.className = "py-1.5 text-xs font-medium rounded-lg border border-hacienda-carbon/20");
+      event.target.className = "py-1.5 text-xs font-medium rounded-lg border border-hacienda-verde bg-hacienda-verde text-white";
       document.getElementById(`price-${idLote}`).innerText = price.toFixed(2) + " €";
-      
-      const card = container.closest('.bg-white');
+      const card = container.closest('.group');
       card.dataset.selectedFormat = format;
       card.dataset.selectedPrice = price;
     }
 
+    // INTERACTIVIDAD MODAL & EFECTO 360
+    function openModal(idLote) {
+      const item = catalogo.find(c => c.idLote === idLote);
+      if(!item) return;
+
+      document.getElementById("modal-img").src = item.imagenUrl;
+      document.getElementById("modal-origen").innerText = `${item.pais} · ${item.variedad}`;
+      document.getElementById("modal-title").innerText = item.regionFinca;
+      document.getElementById("modal-specs").innerText = `Proceso: ${item.proceso} | Altitud: ${item.altura}`;
+      document.getElementById("modal-story").innerText = item.historia;
+      document.getElementById("modal-price").innerText = `${item.precios['250g'].toFixed(2)} €`;
+
+      const modal = document.getElementById("modal-detail");
+      modal.classList.remove("hidden");
+      setTimeout(() => modal.classList.remove("opacity-0"), 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("modal-detail");
+      modal.classList.add("opacity-0");
+      setTimeout(() => modal.classList.add("hidden"), 300);
+    }
+
+    // Efecto 3D interactivo en el empaque
+    const bagContainer = document.getElementById("bag-container");
+    let isDragging = false;
+    let startX = 0, currentRotY = 0;
+
+    bagContainer.addEventListener("mousedown", (e) => { isDragging = true; startX = e.clientX; });
+    window.addEventListener("mouseup", () => isDragging = false);
+    window.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      currentRotY += deltaX * 0.4;
+      bagContainer.style.transform = `rotateY(${currentRotY}deg) rotateX(${-deltaX * 0.1}deg)`;
+      startX = e.clientX;
+    });
+
+    // Soporte táctil en móviles para el giro 360
+    bagContainer.addEventListener("touchstart", (e) => { isDragging = true; startX = e.touches[0].clientX; });
+    window.addEventListener("touchend", () => isDragging = false);
+    window.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - startX;
+      currentRotY += deltaX * 0.6;
+      bagContainer.style.transform = `rotateY(${currentRotY}deg)`;
+      startX = e.touches[0].clientX;
+    });
+
+    // CARRITO Y CHECKOUT
     function addToCart(idLote) {
       const coffee = catalogo.find(c => c.idLote === idLote);
-      const card = document.getElementById(`format-${idLote}`).closest('.bg-white');
+      const card = document.getElementById(`format-${idLote}`).closest('.group');
       const format = card.dataset.selectedFormat || "250g";
       const price = parseFloat(card.dataset.selectedPrice) || coffee.precios["250g"];
       const grind = document.getElementById(`grind-${idLote}`).value;
 
-      const itemExistente = carrito.find(i => i.idLote === idLote && i.formato === format && i.molienda === grind);
-      
-      if(itemExistente) {
-        itemExistente.cantidad += 1;
-      } else {
+      const item = carrito.find(i => i.idLote === idLote && i.formato === format && i.molienda === grind);
+      if(item) { item.cantidad++; } 
+      else {
         carrito.push({
           idLote: coffee.idLote,
           finca: coffee.regionFinca,
@@ -314,16 +371,14 @@
     function updateCartUI() {
       const count = carrito.reduce((acc, item) => acc + item.cantidad, 0);
       document.getElementById("cart-count").innerText = count;
-
-      const itemsContainer = document.getElementById("cart-items");
-      itemsContainer.innerHTML = "";
-
+      const container = document.getElementById("cart-items");
+      container.innerHTML = "";
       let total = 0;
+
       carrito.forEach((item, index) => {
         const subtotal = item.precioUnitario * item.cantidad;
         total += subtotal;
-
-        itemsContainer.innerHTML += `
+        container.innerHTML += `
           <div class="bg-white p-4 rounded-xl border border-hacienda-carbon/10 flex justify-between items-start">
             <div>
               <h5 class="font-bold text-sm text-hacienda-verde">${item.finca}</h5>
@@ -336,23 +391,22 @@
             </div>
             <div class="text-right">
               <span class="text-sm font-bold font-serif text-hacienda-verde">${subtotal.toFixed(2)} €</span>
-              <button onclick="removeItem(${index})" class="block text-xs text-hacienda-teja mt-2 font-medium">Eliminar</button>
+              <button onclick="removeItem(${index})" class="block text-xs text-hacienda-teja mt-2">Eliminar</button>
             </div>
           </div>
         `;
       });
-
       document.getElementById("cart-total").innerText = total.toFixed(2) + " €";
     }
 
-    function changeQty(index, delta) {
-      carrito[index].cantidad += delta;
-      if(carrito[index].cantidad <= 0) carrito.splice(index, 1);
+    function changeQty(idx, d) {
+      carrito[idx].cantidad += d;
+      if(carrito[idx].cantidad <= 0) carrito.splice(idx, 1);
       updateCartUI();
     }
 
-    function removeItem(index) {
-      carrito.splice(index, 1);
+    function removeItem(idx) {
+      carrito.splice(idx, 1);
       updateCartUI();
     }
 
@@ -367,36 +421,28 @@
       }
     }
 
-    // Checkout: Realiza el POST hacia Apps Script y actualiza Google Sheets
     async function checkout() {
-      if(carrito.length === 0) return alert("Tu carrito está vacío.");
-      
+      if(carrito.length === 0) return alert("El carrito está vacío.");
       const btn = document.getElementById("btn-checkout");
       btn.disabled = true;
       btn.innerText = "Registrando en Tostaduría...";
-
-      const payload = {
-        items: carrito,
-        cliente: { email: "pedidos.web@gmail.com" }
-      };
 
       try {
         if(APPS_SCRIPT_URL !== "TU_APPS_SCRIPT_WEB_APP_URL_AQUI") {
           await fetch(APPS_SCRIPT_URL, {
             method: "POST",
-            mode: "no-cors", // Para llamadas directas a Apps Script
+            mode: "no-cors",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({ items: carrito, cliente: { email: "pedidos.web@gmail.com" } })
           });
         }
-        
-        alert("¡Pedido confirmado con éxito! El inventario ha sido actualizado.");
+        alert("¡Pedido registrado en el sistema con éxito!");
         carrito = [];
         updateCartUI();
         toggleCart();
-        loadCatalog(); // Refresca stock en pantalla
+        loadCatalog();
       } catch (e) {
-        alert("Hubo un detalle al registrar el pedido: " + e.message);
+        alert("Error: " + e.message);
       } finally {
         btn.disabled = false;
         btn.innerText = "Confirmar y Tostar Pedido";
