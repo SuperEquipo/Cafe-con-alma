@@ -8,7 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -35,22 +35,18 @@
   </script>
 
   <style>
-    /* Efecto 3D interactivo */
     .perspective-container { perspective: 1000px; }
-    .bag-3d {
-      transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
-    }
+    .bag-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
   </style>
 </head>
 
-<body class="bg-hacienda-pergamino text-hacienda-carbon font-sans antialiased">
+<body class="bg-hacienda-pergamino text-hacienda-carbon font-sans antialiased selection:bg-hacienda-lacre selection:text-white">
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-40 bg-hacienda-verde text-hacienda-pergamino border-b border-hacienda-lacre/30">
+  <header class="sticky top-0 z-40 bg-hacienda-verde text-hacienda-pergamino border-b border-hacienda-lacre/30 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <div>
-        <span class="text-[10px] uppercase tracking-[0.3em] text-hacienda-lacre font-bold block">Tostaduría Artesanal</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] text-hacienda-lacre font-bold block">Tostaduría de Especialidad</span>
         <h1 class="font-serif text-2xl font-bold tracking-wider text-white">ALMA DEL EJE</h1>
       </div>
       
@@ -69,39 +65,38 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-hacienda-carbon/10 pb-6">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl font-bold text-hacienda-verde">Cosechas Disponibles</h2>
-        <p class="text-sm text-hacienda-carbon/60 mt-1">Haz clic en cualquier café para ver su empaque 360º e historia</p>
+        <p class="text-sm text-hacienda-carbon/60 mt-1">Sincronizado en tiempo real desde el maestro de tueste</p>
       </div>
       <span class="text-xs tracking-widest uppercase text-hacienda-lacre font-bold mt-4 md:mt-0">
         100% Arábica de Especialidad
       </span>
     </div>
 
-    <!-- Grid de Cafés -->
+    <!-- Grid generado 100% dinámicamente -->
     <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Se carga dinámicamente -->
+      <!-- Skeleton mientras lee el Sheet -->
+      <div class="animate-pulse bg-white p-6 rounded-3xl h-96 border border-hacienda-carbon/10"></div>
+      <div class="animate-pulse bg-white p-6 rounded-3xl h-96 border border-hacienda-carbon/10"></div>
+      <div class="animate-pulse bg-white p-6 rounded-3xl h-96 border border-hacienda-carbon/10"></div>
     </div>
   </main>
 
-  <!-- MODAL EXPERIENCIA 360º & DETALLE DEL DOC -->
+  <!-- MODAL VISOR 360 & HISTORIA DEL DOC -->
   <div id="modal-detail" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
     <div class="bg-hacienda-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border border-hacienda-lacre/30 flex flex-col md:flex-row max-h-[90vh]">
       
-      <!-- Lado Izquierdo: Visor 360 Interactible -->
+      <!-- Visor 360 -->
       <div class="md:w-1/2 bg-hacienda-verde p-8 flex flex-col items-center justify-center relative perspective-container select-none">
         <span class="absolute top-4 left-4 text-[10px] tracking-widest uppercase bg-hacienda-lacre text-white px-3 py-1 rounded-full font-bold">
           Visor 360º Interactivo
         </span>
-        
         <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-64 h-80 flex items-center justify-center">
-          <img id="modal-img" src="./filandia-reserva.png" alt="Empaque de Café" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
+          <img id="modal-img" src="" alt="Empaque de Café" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
         </div>
-        
-        <p class="text-xs text-hacienda-pergamino/60 mt-4 flex items-center gap-2">
-          <span>🔄 Arrastra con el ratón o el dedo para girar</span>
-        </p>
+        <p class="text-xs text-hacienda-pergamino/60 mt-4">🔄 Arrastra con el ratón o el dedo para rotar</p>
       </div>
 
-      <!-- Lado Derecho: Historia del Doc y Ficha Técnica -->
+      <!-- Ficha técnica e historia del Google Doc -->
       <div class="md:w-1/2 p-8 overflow-y-auto flex flex-col justify-between">
         <div>
           <div class="flex justify-between items-start">
@@ -113,11 +108,9 @@
           <p id="modal-specs" class="text-xs text-hacienda-carbon/60 mb-6"></p>
 
           <h4 class="text-xs font-bold uppercase tracking-wider text-hacienda-carbon/80 mb-2 border-b border-hacienda-carbon/10 pb-1">
-            Historia & Perfil de Cosecha (Google Doc)
+            Historia & Ficha de Cosecha
           </h4>
-          <p id="modal-story" class="text-sm text-hacienda-carbon/80 leading-relaxed font-light whitespace-pre-line">
-            <!-- Texto sincronizado del Doc -->
-          </p>
+          <p id="modal-story" class="text-sm text-hacienda-carbon/80 leading-relaxed font-light whitespace-pre-line"></p>
         </div>
 
         <div class="mt-8 pt-4 border-t border-hacienda-carbon/10 flex items-center justify-between">
@@ -130,11 +123,10 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- DRAWER DEL CARRITO -->
+  <!-- CARRITO -->
   <div id="cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-hacienda-pergamino p-6 shadow-2xl flex flex-col justify-between">
       <div>
@@ -158,69 +150,34 @@
   </div>
 
   <script>
-    // URL DE TU APPS SCRIPT
-    const APPS_SCRIPT_URL = "TU_APPS_SCRIPT_WEB_APP_URL_AQUI";
-
-    const MOCK_DATA = [
-      {
-        idLote: "COL-26-001",
-        pais: "Colombia",
-        regionFinca: "Filandia - Finca La Colina",
-        variedad: "Caturra Chiroso",
-        proceso: "Lavado Clásico",
-        altura: "1.850 msnm",
-        imagenUrl: "./filandia-reserva.png",
-        historia: "Cultivado en las laderas de Filandia bajo sombra nativa de guamos y plátano. Este lote destaca por su perfil limpio, acidez de mandarina madura y notas profundas a chocolate amargo y caramelo.",
-        notasCatas: ["Caramelo", "Flor de Naranja", "Chocolate Amargo"],
-        precios: { "250g": 11.50, "500g": 21.00, "1000g": 38.00 },
-        estado: "Activo"
-      },
-      {
-        idLote: "COL-26-002",
-        pais: "Colombia",
-        regionFinca: "Salento - Hacienda El Oasis",
-        variedad: "Gesha Imperial",
-        proceso: "Honey Anaeróbico",
-        altura: "1.920 msnm",
-        imagenUrl: "./filandia-reserva.png",
-        historia: "Fermentación controlada en cereza durante 48 horas en tanques sellados. Una taza exuberante, floral con recuerdos a jazmín silvestre y miel fresca de montaña.",
-        notasCatas: ["Jazmín", "Miel de Azahar", "Melocotón"],
-        precios: { "250g": 16.50, "500g": 31.00, "1000g": 58.00 },
-        estado: "Últimas Unidades"
-      },
-      {
-        idLote: "BRA-26-001",
-        pais: "Brasil",
-        regionFinca: "Cerrado Mineiro - Lote Dulce",
-        variedad: "Bourbon Amarillo",
-        proceso: "Natural Tradicional",
-        altura: "1.250 msnm",
-        imagenUrl: "./filandia-reserva.png",
-        historia: "Secado en patios africanos al sol. Cuerpo redondo, cremoso, con un dulzor marcado a panela y frutos secos tostados.",
-        notasCatas: ["Avellana", "Panela", "Cacao 70%"],
-        precios: { "250g": 9.80, "500g": 18.50, "1000g": 34.00 },
-        estado: "Activo"
-      }
-    ];
+    // PEGA AQUÍ LA URL DE TU APPS SCRIPT
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP9TxsoNYZvul3p37BIvlBQyHr6_O8zEarYxJ-JRFisEC0eAok7l8W4X8NBkzQptb8xg/exec";
 
     let catalogo = [];
     let carrito = [];
 
+    // Carga dinámica de cafés desde el Google Sheet
     async function loadCatalog() {
+      const grid = document.getElementById("coffee-grid");
       try {
-        if(APPS_SCRIPT_URL !== "TU_APPS_SCRIPT_WEB_APP_URL_AQUI") {
-          const res = await fetch(APPS_SCRIPT_URL);
-          const data = await res.json();
-          catalogo = data.status === "success" ? data.data : MOCK_DATA;
+        const res = await fetch(APPS_SCRIPT_URL);
+        const json = await res.json();
+        
+        if(json.status === "success" && json.data.length > 0) {
+          catalogo = json.data;
+          renderCatalog();
         } else {
-          catalogo = MOCK_DATA;
+          grid.innerHTML = `<p class="col-span-3 text-center py-12 text-hacienda-carbon/60">No hay cosechas activas en el inventario actualmente.</p>`;
         }
-      } catch (e) {
-        catalogo = MOCK_DATA;
+      } catch (err) {
+        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-hacienda-teja">
+          <p class="font-bold">Error al conectar con la base de datos.</p>
+          <p class="text-xs mt-1 text-hacienda-carbon/60">Revisa la URL de Apps Script y los permisos de ejecución.</p>
+        </div>`;
       }
-      renderCatalog();
     }
 
+    // Renderiza los cafés sin importar cuántos existan en el Sheet
     function renderCatalog() {
       const grid = document.getElementById("coffee-grid");
       grid.innerHTML = "";
@@ -238,17 +195,19 @@
               </span>
             </div>
 
-            <!-- Imagen del Empaque (Click abre Modal 360) -->
-            <div onclick="openModal('${item.idLote}')" class="cursor-pointer my-4 flex items-center justify-center h-48 bg-hacienda-pergamino/50 rounded-2xl group-hover:bg-hacienda-pergamino transition-colors overflow-hidden relative">
-              <img src="${item.imagenUrl}" alt="${item.regionFinca}" class="h-44 object-contain group-hover:scale-105 transition-transform duration-300" />
-              <span class="absolute bottom-2 text-[10px] tracking-wider uppercase text-hacienda-carbon/50 bg-white/80 px-2 py-0.5 rounded-full">Ver 360º & Historia</span>
+            <!-- Imagen dinámica -->
+            <div onclick="openModal('${item.idLote}')" class="cursor-pointer my-4 flex items-center justify-center h-56 bg-hacienda-pergamino/50 rounded-2xl group-hover:bg-hacienda-pergamino transition-all overflow-hidden relative border border-hacienda-carbon/5">
+              <img src="${item.imagenUrl}" alt="${item.regionFinca}" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute bottom-2 bg-hacienda-verdeOscuro/80 backdrop-blur-sm text-white text-[10px] tracking-wider uppercase px-3 py-1 rounded-full shadow">
+                Ver 360º & Historia
+              </span>
             </div>
 
             <h4 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-2xl font-bold text-hacienda-verde mb-1 hover:text-hacienda-lacre transition-colors">${item.regionFinca}</h4>
             <p class="text-xs text-hacienda-carbon/60 mb-4">${item.proceso} · ${item.altura}</p>
 
             <div class="flex flex-wrap gap-1.5 mb-6">
-              ${item.notasCatas.map(n => `<span class="bg-hacienda-pergamino text-hacienda-carbon/80 text-xs px-2.5 py-1 rounded-md">${n}</span>`).join('')}
+              ${item.notasCatas.map(n => `<span class="bg-hacienda-pergamino text-hacienda-carbon/80 text-xs px-2.5 py-1 rounded-md border border-hacienda-carbon/5">${n}</span>`).join('')}
             </div>
 
             <!-- Formato & Molienda -->
@@ -294,7 +253,7 @@
       card.dataset.selectedPrice = price;
     }
 
-    // INTERACTIVIDAD MODAL & EFECTO 360
+    // Modal 360
     function openModal(idLote) {
       const item = catalogo.find(c => c.idLote === idLote);
       if(!item) return;
@@ -302,7 +261,7 @@
       document.getElementById("modal-img").src = item.imagenUrl;
       document.getElementById("modal-origen").innerText = `${item.pais} · ${item.variedad}`;
       document.getElementById("modal-title").innerText = item.regionFinca;
-      document.getElementById("modal-specs").innerText = `Proceso: ${item.proceso} | Altitud: ${item.altura}`;
+      document.getElementById("modal-specs").innerText = `Proceso: ${item.proceso} | Altura: ${item.altura}`;
       document.getElementById("modal-story").innerText = item.historia;
       document.getElementById("modal-price").innerText = `${item.precios['250g'].toFixed(2)} €`;
 
@@ -317,10 +276,9 @@
       setTimeout(() => modal.classList.add("hidden"), 300);
     }
 
-    // Efecto 3D interactivo en el empaque
+    // Rotación 360 interactiva
     const bagContainer = document.getElementById("bag-container");
-    let isDragging = false;
-    let startX = 0, currentRotY = 0;
+    let isDragging = false, startX = 0, currentRotY = 0;
 
     bagContainer.addEventListener("mousedown", (e) => { isDragging = true; startX = e.clientX; });
     window.addEventListener("mouseup", () => isDragging = false);
@@ -332,7 +290,6 @@
       startX = e.clientX;
     });
 
-    // Soporte táctil en móviles para el giro 360
     bagContainer.addEventListener("touchstart", (e) => { isDragging = true; startX = e.touches[0].clientX; });
     window.addEventListener("touchend", () => isDragging = false);
     window.addEventListener("touchmove", (e) => {
@@ -343,7 +300,7 @@
       startX = e.touches[0].clientX;
     });
 
-    // CARRITO Y CHECKOUT
+    // Carrito y Pedidos
     function addToCart(idLote) {
       const coffee = catalogo.find(c => c.idLote === idLote);
       const card = document.getElementById(`format-${idLote}`).closest('.group');
@@ -428,15 +385,13 @@
       btn.innerText = "Registrando en Tostaduría...";
 
       try {
-        if(APPS_SCRIPT_URL !== "TU_APPS_SCRIPT_WEB_APP_URL_AQUI") {
-          await fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: carrito, cliente: { email: "pedidos.web@gmail.com" } })
-          });
-        }
-        alert("¡Pedido registrado en el sistema con éxito!");
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: carrito, cliente: { email: "pedidos.web@gmail.com" } })
+        });
+        alert("¡Pedido registrado con éxito en el Google Sheet!");
         carrito = [];
         updateCartUI();
         toggleCart();
