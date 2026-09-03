@@ -2,34 +2,39 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Tostaduría Alma del Eje | Cafés de Especialidad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tostaduría de Especialidad | Alma del Eje</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <!-- Google Fonts: Cinzel, Playfair & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            colonial: {
-              pergamino: '#FAF6EE',
-              cremaFondo: '#F5EFE6',
-              borde: '#D8C7B0',
-              cafeTostado: '#4A2818',
-              cafeOscuro: '#2C160B',
-              terracota: '#8E382B',
-              mostaza: '#C98B32',
-              textoMuted: '#6B5E51'
+            eje: {
+              crema: '#F6EFE5',
+              pergamino: '#FAF7F0',
+              bordeDoble: '#D3C2A9',
+              bordeFino: '#E7DC Plain',
+              madera: '#4A2818',
+              cafeNoche: '#27140A',
+              terracota: '#8C3829',
+              mostaza: '#C2842C',
+              rosaBalcon: '#C84B78',
+              azulBalcon: '#285C8A',
+              verdeBalcon: '#245C3F',
+              amarilloBalcon: '#D99B26'
             }
           },
           fontFamily: {
             serif: ['Cinzel', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
             sans: ['Plus Jakarta Sans', 'sans-serif']
           }
         }
@@ -38,155 +43,241 @@
   </script>
 
   <style>
-    .bg-patron {
-      background-color: #F5EFE6;
-      background-image: radial-gradient(#4a2818 0.4px, transparent 0.4px);
-      background-size: 14px 14px;
+    /* Textura de fondo lienzo / pergamino de acuarela */
+    body {
+      background-color: #F6EFE5;
+      background-image: 
+        radial-gradient(#4a2818 0.45px, transparent 0.45px),
+        radial-gradient(#4a2818 0.45px, #F6EFE5 0.45px);
+      background-size: 16px 16px;
+      background-position: 0 0, 8px 8px;
     }
 
-    .card-colonial {
+    /* Tejas de barro coloniales superiores */
+    .roof-tile {
+      background: repeating-linear-gradient(
+        90deg,
+        #A84832 0px,
+        #8C3829 12px,
+        #702B1D 24px
+      );
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    /* Calle empedrada del Eje Cafetero */
+    .cobblestone {
+      background: radial-gradient(circle at 50% 50%, #E8DEC8 35%, #D4C6AB 70%, #BAA887 100%);
+      background-size: 28px 18px;
+    }
+
+    /* Tarjetas con marco doble estilo pergamino de hacienda */
+    .card-hacienda {
       background: #FAF7F0;
-      border: 1px solid #D8C7B0;
-      box-shadow: 0 4px 15px rgba(74, 40, 24, 0.05), 0 0 0 4px #FAF7F0, 0 0 0 5px #D8C7B0;
+      border: 1.5px solid #D3C2A9;
+      box-shadow: 0 12px 30px -5px rgba(39, 20, 10, 0.12), 0 0 0 5px #FAF7F0, 0 0 0 6.5px #D3C2A9;
     }
 
-    .perspective-container { perspective: 1000px; }
+    .perspective-container { perspective: 1200px; }
     .bag-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
     .custom-scroll::-webkit-scrollbar { width: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #C98B32; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #C2842C; border-radius: 4px; }
   </style>
 </head>
 
-<body class="bg-patron text-colonial-cafeOscuro font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-colonial-mostaza selection:text-white">
+<body class="text-eje-cafeNoche font-sans antialiased min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-eje-mostaza selection:text-white">
 
   <!-- ============================================================ -->
-  <!-- 1. BARRA SUPERIOR DE NAVEGACIÓN                             -->
+  <!-- 1. ENTORNO SUPERIOR: FACHADA COLONIAL, BALCONES & WILLYS      -->
   <!-- ============================================================ -->
-  <nav class="bg-colonial-pergamino/90 backdrop-blur-md border-b border-colonial-borde sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+  <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+    
+    <!-- Flores de Buganvilla decorativas en esquinas superiores -->
+    <div class="absolute top-0 left-2 pointer-events-none z-30 select-none text-3xl md:text-5xl opacity-40">🌸🌺🌿</div>
+    <div class="absolute top-0 right-2 pointer-events-none z-30 select-none text-3xl md:text-5xl opacity-40 text-right">🌿🌺🌸</div>
+
+    <!-- Barra de Navegación Integrada -->
+    <div class="flex items-center justify-between relative z-30 pb-2">
       <div>
-        <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-colonial-terracota font-bold block">Tostaduría de Especialidad</span>
-        <h1 class="font-serif text-lg sm:text-2xl font-black tracking-widest text-colonial-cafeOscuro">ALMA DEL EJE</h1>
+        <span class="text-[9px] uppercase tracking-[0.35em] text-eje-terracota font-bold block font-sans">Tostaduría de Especialidad</span>
+        <h1 class="font-serif text-2xl md:text-3xl font-black tracking-widest text-eje-madera">ALMA DEL EJE</h1>
       </div>
 
-      <div class="flex items-center gap-3 sm:gap-5 text-colonial-cafeTostado">
-        <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-3.5 sm:px-4 py-2 rounded-full transition-all shadow-sm">
+      <!-- Iconos superiores de la maqueta -->
+      <div class="flex items-center gap-4 text-eje-madera">
+        <button class="hover:text-eje-terracota transition-colors" title="Buscar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+        <button class="hover:text-eje-terracota transition-colors" title="Perfil">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </button>
+        <button class="hover:text-eje-terracota transition-colors" title="Favoritos">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </button>
+        <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-eje-madera hover:bg-eje-terracota text-white px-4 py-2 rounded-full transition-all shadow-md">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="text-xs font-serif hidden sm:inline">Pedido</span>
-          <span id="cart-count" class="bg-colonial-mostaza text-colonial-cafeOscuro text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
+          <span id="cart-count" class="bg-eje-mostaza text-eje-cafeNoche text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
-  </nav>
 
-  <!-- ============================================================ -->
-  <!-- 2. BANNER ESCÉNICO RESPONSIVO (BALCONES + WILLYS)             -->
-  <!-- ============================================================ -->
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 w-full">
-    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-colonial-borde shadow-md bg-colonial-pergamino">
-      <!-- Imagen del paisaje y fachada colonial que se adapta sin deformarse -->
-      <div class="w-full h-44 sm:h-64 md:h-80 lg:h-96 relative">
-        <img 
-          src="./fondo-eje.jpg" 
-          alt="Paisaje Cultural Cafetero" 
-          onerror="this.style.display='none'"
-          class="w-full h-full object-cover object-top" 
-        />
+    <!-- FACHADA ARQUITECTÓNICA DE CASAS Y BALCONES DEL EJE -->
+    <div class="relative w-full rounded-3xl border-2 border-eje-bordeDoble bg-[#EDE4D3] overflow-hidden shadow-md mt-2">
+      
+      <!-- Fila de Tejas de Barro Superiores -->
+      <div class="w-full h-4 roof-tile"></div>
+
+      <!-- Balcones Coloniales Tradicionales -->
+      <div class="grid grid-cols-5 border-b-4 border-eje-madera bg-[#F4ECDC]">
+        
+        <!-- Balcón 1: Rosa Filandia -->
+        <div class="p-3 border-r-2 border-eje-bordeDoble bg-eje-rosaBalcon/15 flex flex-col items-center justify-between h-24">
+          <div class="w-full flex justify-between px-2 text-xs"><span>🌺</span><span>🌿</span></div>
+          <div class="w-full h-10 border-2 border-eje-rosaBalcon bg-eje-rosaBalcon/30 rounded flex items-center justify-center font-serif text-[10px] font-bold text-eje-rosaBalcon">
+            FILANDIA
+          </div>
+        </div>
+
+        <!-- Balcón 2: Azul Colonial -->
+        <div class="p-3 border-r-2 border-eje-bordeDoble bg-eje-azulBalcon/15 flex flex-col items-center justify-between h-24">
+          <div class="w-full flex justify-between px-2 text-xs"><span>🌿</span><span>🌺</span></div>
+          <div class="w-full h-10 border-2 border-eje-azulBalcon bg-eje-azulBalcon/30 rounded flex items-center justify-center font-serif text-[10px] font-bold text-eje-azulBalcon">
+            SALENTO
+          </div>
+        </div>
+
+        <!-- Balcón 3: Amarillo Quindío -->
+        <div class="p-3 border-r-2 border-eje-bordeDoble bg-eje-amarilloBalcon/15 flex flex-col items-center justify-between h-24">
+          <div class="w-full flex justify-between px-2 text-xs"><span>🌺</span><span>🌿</span></div>
+          <div class="w-full h-10 border-2 border-eje-amarilloBalcon bg-eje-amarilloBalcon/30 rounded flex items-center justify-center font-serif text-[10px] font-bold text-eje-amarilloBalcon">
+            EL OASIS
+          </div>
+        </div>
+
+        <!-- Balcón 4: Verde Cafetal -->
+        <div class="p-3 border-r-2 border-eje-bordeDoble bg-eje-verdeBalcon/15 flex flex-col items-center justify-between h-24">
+          <div class="w-full flex justify-between px-2 text-xs"><span>🌿</span><span>🌺</span></div>
+          <div class="w-full h-10 border-2 border-eje-verdeBalcon bg-eje-verdeBalcon/30 rounded flex items-center justify-center font-serif text-[10px] font-bold text-eje-verdeBalcon">
+            LA COLINA
+          </div>
+        </div>
+
+        <!-- Balcón 5: Terracota Cosecha -->
+        <div class="p-3 bg-eje-terracota/15 flex flex-col items-center justify-between h-24">
+          <div class="w-full flex justify-between px-2 text-xs"><span>🌺</span><span>🌿</span></div>
+          <div class="w-full h-10 border-2 border-eje-terracota bg-eje-terracota/30 rounded flex items-center justify-center font-serif text-[10px] font-bold text-eje-terracota">
+            HACIENDA
+          </div>
+        </div>
+
       </div>
+
+      <!-- Planta Baja / Calle Empedrada con Willys Yipao -->
+      <div class="cobblestone p-6 flex flex-col lg:flex-row items-center justify-between gap-6 border-t-2 border-eje-madera/20">
+        
+        <!-- Título Principal de la Maqueta -->
+        <div>
+          <h2 class="font-serif text-3xl md:text-5xl font-black tracking-tight text-eje-cafeNoche leading-none">
+            COSECHAS DISPONIBLES
+          </h2>
+          <p class="text-xs md:text-sm text-eje-madera/80 font-medium mt-2">
+            Sincronizado en tiempo real desde el maestro de tueste
+          </p>
+        </div>
+
+        <!-- Escena del Jeep Willys (Yipao Cafetero) -->
+        <div class="flex items-center gap-4 bg-[#FAF7F0]/95 backdrop-blur border-2 border-eje-madera/40 rounded-2xl p-3 px-5 shadow-lg">
+          <div class="text-4xl filter drop-shadow">🚙📦</div>
+          <div>
+            <span class="text-[9px] uppercase tracking-widest text-eje-terracota font-bold block">Tradición Cafetera</span>
+            <span class="font-serif text-xs md:text-sm font-black tracking-wider text-eje-madera uppercase">
+              100% Arábica de Especialidad
+            </span>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </header>
+  </div>
 
   <!-- ============================================================ -->
-  <!-- 3. TÍTULO DE SECCIÓN & BADGE                                 -->
+  <!-- 2. CATÁLOGO: TARJETAS CON ARCOS DE HACIENDA Y BOTONES        -->
   <!-- ============================================================ -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4 w-full flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-    <div>
-      <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-colonial-cafeOscuro">
-        COSECHAS DISPONIBLES
-      </h2>
-      <p class="text-xs sm:text-sm text-colonial-textoMuted font-medium mt-1">
-        Sincronizado en tiempo real desde el maestro de tueste
-      </p>
-    </div>
-
-    <div class="inline-flex items-center gap-2 bg-colonial-pergamino border border-colonial-borde rounded-xl px-4 py-2 shadow-sm self-start sm:self-auto">
-      <span>☕</span>
-      <span class="text-[11px] sm:text-xs font-serif font-bold text-colonial-cafeTostado uppercase tracking-wider">
-        100% Arábica de Especialidad
-      </span>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- 4. CATÁLOGO PRINCIPAL (GRID TOTALMENTE RESPONSIVO)           -->
-  <!-- ============================================================ -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full">
     
-    <!-- Grid: 1 columna en móvil, 2 en tablet, 3 en PC -->
-    <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Grid Dinámico conectado al Google Sheet -->
+    <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Skeletons de carga -->
-      <div class="animate-pulse card-colonial rounded-3xl h-[480px]"></div>
-      <div class="animate-pulse card-colonial rounded-3xl h-[480px]"></div>
-      <div class="animate-pulse card-colonial rounded-3xl h-[480px]"></div>
+      <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
+      <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
+      <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
     </div>
 
   </main>
 
   <!-- ============================================================ -->
-  <!-- 5. FOOTER HISTÓRICO RESPONSIVO                               -->
+  <!-- 3. BARRA INFERIOR DE NAVEGACIÓN HISTÓRICA                    -->
   <!-- ============================================================ -->
-  <footer class="bg-colonial-pergamino border-t border-colonial-borde py-6 px-4 sm:px-6 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-serif font-bold text-colonial-cafeTostado">
-      <span class="flex items-center gap-1.5">🏡 Nuestra Finca</span>
-      <span class="flex items-center gap-1.5">🚙 Valle de Cocora</span>
-      <span class="flex items-center gap-1.5">🌴 Palma de Cera</span>
-      <span class="text-colonial-textoMuted font-sans font-normal">© Alma del Eje S.A.S.</span>
+  <footer class="bg-eje-madera text-[#F4ECDC] py-6 px-4 sm:px-6 border-t-4 border-eje-mostaza mt-12 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs font-serif font-bold tracking-wider">
+      <a href="#" class="hover:text-eje-mostaza flex items-center gap-2 transition-colors">
+        <span>🏡</span> Nuestra Finca
+      </a>
+      <a href="#" class="hover:text-eje-mostaza flex items-center gap-2 transition-colors">
+        <span>🚙</span> Historia del Valle de Cocora
+      </a>
+      <a href="#" class="hover:text-eje-mostaza flex items-center gap-2 transition-colors">
+        <span>🌴</span> Historia del Eje y Palma de Cera
+      </a>
+      <a href="#" class="hover:text-eje-mostaza flex items-center gap-2 transition-colors">
+        <span>📜</span> Histórico de Cosechas
+      </a>
     </div>
   </footer>
 
   <!-- ============================================================ -->
-  <!-- 6. MODAL 360 & HISTORIA DOC                                  -->
+  <!-- 4. MODAL VISOR 360º & HISTORIA DE GOOGLE DOCS                -->
   <!-- ============================================================ -->
-  <div id="modal-detail" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6">
-    <div class="bg-colonial-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border border-colonial-borde flex flex-col md:flex-row max-h-[92vh]">
+  <div id="modal-detail" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="bg-eje-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-eje-bordeDoble flex flex-col md:flex-row max-h-[92vh]">
       
       <!-- Visor 360 -->
-      <div class="md:w-1/2 bg-colonial-cafeOscuro p-6 sm:p-8 flex flex-col items-center justify-between relative perspective-container select-none">
-        <span class="text-[10px] tracking-widest uppercase bg-colonial-mostaza text-colonial-cafeOscuro px-3 py-1 rounded-full font-bold">
+      <div class="md:w-1/2 bg-eje-cafeNoche p-8 flex flex-col items-center justify-between relative perspective-container select-none">
+        <span class="text-[10px] tracking-widest uppercase bg-eje-mostaza text-eje-cafeNoche px-3 py-1 rounded-full font-bold">
           Visor 360º Interactivo
         </span>
         
-        <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-48 sm:w-60 h-64 sm:h-72 flex items-center justify-center my-4">
+        <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-56 h-72 flex items-center justify-center my-4">
           <img id="modal-img" src="" alt="Empaque de Café" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
         </div>
         
-        <p class="text-[11px] text-[#FAF6EE]/70">🔄 Arrastra con el dedo o ratón para rotar</p>
+        <p class="text-xs text-[#FAF6EE]/70">🔄 Arrastra con el ratón o el dedo para girar</p>
       </div>
 
       <!-- Ficha Google Doc -->
-      <div class="md:w-1/2 p-6 sm:p-8 overflow-y-auto flex flex-col justify-between">
+      <div class="md:w-1/2 p-8 overflow-y-auto flex flex-col justify-between">
         <div>
           <div class="flex justify-between items-start">
-            <span id="modal-origen" class="text-xs uppercase tracking-widest text-colonial-terracota font-bold font-serif"></span>
-            <button onclick="closeModal()" class="text-2xl text-colonial-cafeTostado/50 hover:text-colonial-cafeTostado font-bold">&times;</button>
+            <span id="modal-origen" class="text-xs uppercase tracking-widest text-eje-terracota font-bold font-serif"></span>
+            <button onclick="closeModal()" class="text-2xl text-eje-madera/50 hover:text-eje-madera font-bold">&times;</button>
           </div>
           
-          <h3 id="modal-title" class="font-serif text-xl sm:text-2xl font-extrabold text-colonial-cafeOscuro mt-1 mb-1"></h3>
-          <p id="modal-specs" class="text-xs text-colonial-textoMuted mb-4"></p>
+          <h3 id="modal-title" class="font-serif text-2xl font-black text-eje-cafeNoche mt-1 mb-1"></h3>
+          <p id="modal-specs" class="text-xs text-eje-madera/70 mb-4"></p>
 
-          <h4 class="text-xs font-bold uppercase tracking-wider text-colonial-cafeTostado mb-2 border-b border-colonial-borde pb-1">
-            Historia & Ficha de Cosecha
+          <h4 class="text-xs font-bold uppercase tracking-wider text-eje-madera mb-2 border-b border-eje-bordeDoble pb-1">
+            Historia & Ficha de Cosecha (Google Doc)
           </h4>
-          <p id="modal-story" class="text-xs sm:text-sm text-colonial-cafeOscuro/80 leading-relaxed font-light whitespace-pre-line"></p>
+          <p id="modal-story" class="text-xs sm:text-sm text-eje-cafeNoche/85 leading-relaxed font-light whitespace-pre-line"></p>
         </div>
 
-        <div class="mt-6 pt-4 border-t border-colonial-borde flex items-center justify-between">
+        <div class="mt-6 pt-4 border-t border-eje-bordeDoble flex items-center justify-between">
           <div>
-            <span class="text-[10px] text-colonial-textoMuted block">Precio</span>
-            <span id="modal-price" class="font-serif text-xl sm:text-2xl font-bold text-colonial-cafeOscuro"></span>
+            <span class="text-[10px] text-eje-madera/60 block">Precio desde</span>
+            <span id="modal-price" class="font-serif text-2xl font-black text-eje-cafeNoche"></span>
           </div>
-          <button onclick="closeModal()" class="bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all">
-            Cerrar
+          <button onclick="closeModal()" class="bg-eje-madera hover:bg-eje-terracota text-white px-6 py-2.5 rounded-xl text-xs font-serif font-bold transition-all shadow">
+            Volver a la Tienda
           </button>
         </div>
       </div>
@@ -195,24 +286,24 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 7. DRAWER DEL CARRITO                                        -->
+  <!-- 5. DRAWER DEL CARRITO                                        -->
   <!-- ============================================================ -->
   <div id="cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
-    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-colonial-pergamino p-6 shadow-2xl flex flex-col justify-between border-l border-colonial-borde">
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-eje-pergamino p-6 shadow-2xl flex flex-col justify-between border-l-2 border-eje-bordeDoble">
       <div>
-        <div class="flex items-center justify-between pb-4 border-b border-colonial-borde">
-          <h4 class="font-serif text-lg font-bold text-colonial-cafeOscuro">Tu Pedido</h4>
-          <button onclick="toggleCart()" class="text-colonial-cafeTostado/50 hover:text-colonial-cafeTostado text-2xl font-bold">&times;</button>
+        <div class="flex items-center justify-between pb-4 border-b border-eje-bordeDoble">
+          <h4 class="font-serif text-lg font-bold text-eje-cafeNoche">Tu Reserva de Cosecha</h4>
+          <button onclick="toggleCart()" class="text-eje-madera/50 hover:text-eje-madera text-2xl font-bold">&times;</button>
         </div>
         <div id="cart-items" class="mt-4 space-y-3 max-h-[60vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
 
-      <div class="border-t border-colonial-borde pt-4 space-y-4">
-        <div class="flex justify-between items-center text-lg font-bold text-colonial-cafeOscuro">
+      <div class="border-t border-eje-bordeDoble pt-4 space-y-4">
+        <div class="flex justify-between items-center text-lg font-bold text-eje-cafeNoche">
           <span class="font-serif">Total</span>
-          <span id="cart-total" class="font-serif text-xl">0.00 €</span>
+          <span id="cart-total" class="font-serif text-xl font-black">0.00 €</span>
         </div>
-        <button onclick="checkout()" id="btn-checkout" class="w-full bg-colonial-cafeTostado hover:bg-colonial-terracota text-white py-3.5 rounded-xl font-medium tracking-wide transition-all shadow-md text-sm">
+        <button onclick="checkout()" id="btn-checkout" class="w-full bg-eje-madera hover:bg-eje-terracota text-white py-4 rounded-xl font-serif text-xs font-bold tracking-wider uppercase transition-all shadow-md">
           Confirmar y Tostar Pedido
         </button>
       </div>
@@ -220,7 +311,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 8. LÓGICA DINÁMICA & APPS SCRIPT                            -->
+  <!-- 6. LÓGICA DINÁMICA & CONEXIÓN AL GOOGLE SHEET                -->
   <!-- ============================================================ -->
   <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP9TxsoNYZvul3p37BIvlBQyHr6_O8zEarYxJ-JRFisEC0eAok7l8W4X8NBkzQptb8xg/exec";
@@ -238,10 +329,10 @@
           catalogo = json.data;
           renderCatalog();
         } else {
-          grid.innerHTML = `<p class="col-span-3 text-center py-12 text-colonial-textoMuted font-serif">No hay cafés disponibles en este momento.</p>`;
+          grid.innerHTML = `<p class="col-span-3 text-center py-12 text-eje-madera font-serif">No hay lotes disponibles en el inventario actualmente.</p>`;
         }
       } catch (err) {
-        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-colonial-terracota font-bold">Error conectando con el maestro de inventario.</div>`;
+        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-eje-terracota font-bold">Error al conectar con la base de datos de Google Sheets.</div>`;
       }
     }
 
@@ -251,51 +342,51 @@
 
       catalogo.forEach(item => {
         const card = document.createElement("div");
-        card.className = "card-colonial rounded-3xl p-5 sm:p-6 relative flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
+        card.className = "card-hacienda rounded-3xl p-5 relative flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl";
 
         card.innerHTML = `
-          <!-- Capitán superior -->
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-colonial-terracota text-white text-[9px] px-3 py-0.5 rounded shadow flex items-center gap-1 font-serif font-bold">
+          <!-- Capitán superior estilo balcón colonial -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-eje-terracota text-white text-[10px] px-3.5 py-0.5 rounded shadow flex items-center gap-1 font-serif font-bold">
             <span>🏛️</span>
           </div>
 
           <div>
-            <!-- Encabezado -->
-            <div class="flex justify-between items-center mb-2.5 pt-1">
-              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-colonial-mostaza font-serif">
+            <!-- Encabezado de la Tarjeta -->
+            <div class="flex justify-between items-center mb-3 pt-1">
+              <span class="text-[11px] uppercase tracking-wider font-bold text-eje-mostaza font-serif">
                 ${item.pais} · ${item.variedad}
               </span>
-              <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-[#E8DFD1] text-colonial-cafeTostado">
+              <span class="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-[#E8DFD1] text-eje-madera">
                 ${item.estado}
               </span>
             </div>
 
-            <!-- Ventana del Empaque con Botón 360 -->
-            <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-48 sm:h-52 bg-[#EFE8DC] border border-colonial-borde flex items-center justify-center group-hover:border-colonial-mostaza transition-colors mb-4">
+            <!-- Marco Estilo Ventana de Hacienda con Botón 360 -->
+            <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-52 bg-[#EFE8DC] border border-eje-bordeDoble flex items-center justify-center group-hover:border-eje-mostaza transition-colors mb-4 shadow-inner">
               <img 
                 src="${item.imagenUrl}" 
                 alt="${item.regionFinca}" 
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
               />
               <div class="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors flex items-end justify-center p-3">
-                <span class="bg-colonial-cafeOscuro/85 backdrop-blur-sm text-colonial-pergamino text-[10px] font-serif font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow border border-colonial-mostaza/40">
+                <span class="bg-eje-cafeNoche/85 backdrop-blur-sm text-[#FAF6EE] text-[10px] font-serif font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow border border-eje-mostaza/40">
                   Ver 360° &amp; Historia
                 </span>
               </div>
             </div>
 
-            <!-- Título y Datos -->
-            <h3 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-lg sm:text-xl font-bold text-colonial-cafeOscuro hover:text-colonial-terracota transition-colors leading-tight mb-1">
+            <!-- Título y Datos de Finca -->
+            <h3 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-xl font-bold text-eje-cafeNoche hover:text-eje-terracota transition-colors leading-tight mb-1">
               ${item.regionFinca}
             </h3>
-            <p class="text-xs text-colonial-textoMuted mb-3">
+            <p class="text-xs text-eje-madera/70 mb-4">
               ${item.proceso} · ${item.altura}
             </p>
 
             <!-- Notas de Cata -->
             <div class="flex flex-wrap gap-1.5 mb-5">
               ${item.notasCatas.map(nota => `
-                <span class="bg-[#EAE0D0] text-colonial-cafeTostado text-[10px] sm:text-[11px] font-medium px-2.5 py-1 rounded-lg border border-colonial-borde/70 flex items-center gap-1">
+                <span class="bg-[#EAE0D0] text-eje-madera text-[11px] font-medium px-3 py-1 rounded-lg border border-eje-bordeDoble flex items-center gap-1">
                   <span>☕</span> ${nota}
                 </span>
               `).join('')}
@@ -303,15 +394,15 @@
           </div>
 
           <div>
-            <!-- Selectores -->
-            <div class="space-y-2.5 pt-3 border-t border-colonial-borde/60 mb-4">
+            <!-- Selectores de Gramaje y Molienda -->
+            <div class="space-y-3 pt-3 border-t border-eje-bordeDoble/60 mb-4">
               <div class="grid grid-cols-3 gap-2" id="format-${item.idLote}">
-                <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1 text-xs font-serif font-bold rounded-lg border-2 border-colonial-cafeTostado bg-colonial-cafeTostado text-white transition-all">250g</button>
-                <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1 text-xs font-serif font-bold rounded-lg border-2 border-colonial-borde bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all">500g</button>
-                <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1 text-xs font-serif font-bold rounded-lg border-2 border-colonial-borde bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all">1 Kg</button>
+                <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-madera bg-eje-madera text-white transition-all">250g</button>
+                <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-bordeDoble bg-[#FAF7F0] text-eje-madera hover:border-eje-madera transition-all">500g</button>
+                <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-bordeDoble bg-[#FAF7F0] text-eje-madera hover:border-eje-madera transition-all">1 Kg</button>
               </div>
 
-              <select id="grind-${item.idLote}" class="w-full bg-[#FAF7F0] border-2 border-colonial-borde rounded-xl px-3 py-1.5 text-xs font-medium text-colonial-cafeOscuro focus:outline-none focus:border-colonial-cafeTostado">
+              <select id="grind-${item.idLote}" class="w-full bg-[#FAF7F0] border-2 border-eje-bordeDoble rounded-xl px-3 py-2 text-xs font-medium text-eje-cafeNoche focus:outline-none focus:border-eje-madera">
                 <option value="Grano Entero">Grano Entero (Tueste Fresco)</option>
                 <option value="Espresso">Molido Fino (Espresso / Moka)</option>
                 <option value="Filtro V60/Chemex">Molido Medio (Filtro / V60)</option>
@@ -321,10 +412,10 @@
 
             <!-- Precio & Botón Añadir -->
             <div class="flex items-center justify-between pt-1">
-              <span id="price-${item.idLote}" class="font-serif text-xl sm:text-2xl font-black text-colonial-cafeOscuro">
+              <span id="price-${item.idLote}" class="font-serif text-2xl font-black text-eje-cafeNoche">
                 ${item.precios['250g'].toFixed(2)} €
               </span>
-              <button onclick="addToCart('${item.idLote}')" class="bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-4 sm:px-5 py-2 rounded-xl font-serif text-xs font-bold tracking-wider transition-all flex items-center gap-1.5 shadow-sm">
+              <button onclick="addToCart('${item.idLote}')" class="bg-eje-madera hover:bg-eje-terracota text-white px-5 py-2.5 rounded-xl font-serif text-xs font-bold tracking-wider transition-all flex items-center gap-2 shadow-sm">
                 <span>☕</span> Añadir
               </button>
             </div>
@@ -340,11 +431,11 @@
     function setFormat(idLote, format, price) {
       const container = document.getElementById(`format-${idLote}`);
       container.querySelectorAll("button").forEach(b => {
-        b.className = "py-1 text-xs font-serif font-bold rounded-lg border-2 border-colonial-borde bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all";
+        b.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-bordeDoble bg-[#FAF7F0] text-eje-madera hover:border-eje-madera transition-all";
       });
-      event.target.className = "py-1 text-xs font-serif font-bold rounded-lg border-2 border-colonial-cafeTostado bg-colonial-cafeTostado text-white transition-all";
+      event.target.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-madera bg-eje-madera text-white transition-all";
       document.getElementById(`price-${idLote}`).innerText = price.toFixed(2) + " €";
-      const card = container.closest('.card-colonial');
+      const card = container.closest('.card-hacienda');
       card.dataset.selectedFormat = format;
       card.dataset.selectedPrice = price;
     }
@@ -398,7 +489,7 @@
     // Carrito
     function addToCart(idLote) {
       const coffee = catalogo.find(c => c.idLote === idLote);
-      const card = document.getElementById(`format-${idLote}`).closest('.card-colonial');
+      const card = document.getElementById(`format-${idLote}`).closest('.card-hacienda');
       const format = card.dataset.selectedFormat || "250g";
       const price = parseFloat(card.dataset.selectedPrice) || coffee.precios["250g"];
       const grind = document.getElementById(`grind-${idLote}`).value;
@@ -432,19 +523,19 @@
         const subtotal = item.precioUnitario * item.cantidad;
         total += subtotal;
         container.innerHTML += `
-          <div class="bg-[#FAF7F0] p-3.5 rounded-2xl border border-colonial-borde flex justify-between items-start">
+          <div class="bg-[#FAF7F0] p-4 rounded-2xl border border-eje-bordeDoble flex justify-between items-start">
             <div>
-              <h5 class="font-serif font-bold text-sm text-colonial-cafeOscuro">${item.finca}</h5>
-              <p class="text-[11px] text-colonial-textoMuted">${item.formato} · ${item.molienda}</p>
-              <div class="flex items-center gap-2.5 mt-2.5">
+              <h5 class="font-serif font-bold text-sm text-eje-cafeNoche">${item.finca}</h5>
+              <p class="text-xs text-eje-madera/70">${item.formato} · ${item.molienda}</p>
+              <div class="flex items-center gap-3 mt-3">
                 <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded bg-[#EAE0D0] text-xs font-bold">-</button>
                 <span class="text-xs font-bold">${item.cantidad}</span>
                 <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded bg-[#EAE0D0] text-xs font-bold">+</button>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-xs font-bold font-serif text-colonial-cafeOscuro">${subtotal.toFixed(2)} €</span>
-              <button onclick="removeItem(${index})" class="block text-[11px] text-colonial-terracota mt-2 font-semibold">Eliminar</button>
+              <span class="text-sm font-bold font-serif text-eje-cafeNoche">${subtotal.toFixed(2)} €</span>
+              <button onclick="removeItem(${index})" class="block text-xs text-eje-terracota mt-2 font-semibold">Eliminar</button>
             </div>
           </div>
         `;
