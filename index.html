@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tostaduría Alma del Eje | Cafés de Especialidad</title>
+  <title>Tostaduría de Especialidad | Alma del Eje</title>
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,15 +19,14 @@
           colors: {
             colonial: {
               crema: '#F7F3EB',
-              pergamino: '#FDFBF7',
-              borde: '#E3D7C5',
+              pergamino: '#FAF7F0',
+              borde: '#D8C7B0',
+              bordeDoble: '#CBB89E',
               cafeTostado: '#4A2818',
               cafeOscuro: '#2C160B',
               terracota: '#8E382B',
               mostaza: '#C98B32',
               verdeHacienda: '#1A382B',
-              rosadoBalcon: '#C84B78',
-              azulColonial: '#2A5C8A',
               textoMuted: '#6B5E51'
             }
           },
@@ -42,28 +41,27 @@
   </script>
 
   <style>
-    /* Efecto 3D interactivo */
-    .perspective-container { perspective: 1200px; }
-    .bag-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
-    
-    /* Textura de fondo estilo ilustración colonial */
+    /* Patrón sutil de puntos estilo pergamino antiguo */
     .bg-eje-pattern {
       background-color: #F7F3EB;
       background-image: 
-        radial-gradient(#4a2818 0.4px, transparent 0.4px),
-        radial-gradient(#4a2818 0.4px, #F7F3EB 0.4px);
+        radial-gradient(#4a2818 0.5px, transparent 0.5px),
+        radial-gradient(#4a2818 0.5px, #F7F3EB 0.5px);
       background-size: 16px 16px;
       background-position: 0 0, 8px 8px;
-      background-opacity: 0.03;
     }
 
-    /* Borde doble estilo pergamino */
+    /* Tarjeta con marco doble colonial estilo pergamino */
     .card-pergamino {
       background: #FAF7F0;
       border: 1px solid #D8C7B0;
-      box-shadow: 0 10px 25px -5px rgba(74, 40, 24, 0.08), 0 0 0 4px #FAF7F0, 0 0 0 5px #D8C7B0;
+      box-shadow: 0 10px 30px -5px rgba(74, 40, 24, 0.08), 0 0 0 5px #FAF7F0, 0 0 0 6px #D8C7B0;
     }
 
+    /* Efecto 3D para el visor */
+    .perspective-container { perspective: 1200px; }
+    .bag-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
+    
     .custom-scroll::-webkit-scrollbar { width: 4px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #C98B32; border-radius: 4px; }
   </style>
@@ -72,64 +70,100 @@
 <body class="bg-eje-pattern text-colonial-cafeOscuro font-sans antialiased selection:bg-colonial-mostaza selection:text-white min-h-screen flex flex-col justify-between">
 
   <!-- ============================================================ -->
-  <!-- 1. HEADER & ILUSTRACIÓN BALCONES COLONIALES + WILLYS         -->
+  <!-- 1. ESCENARIO ILUSTRADO: BALCONES DEL EJE + JEEP WILLYS        -->
   <!-- ============================================================ -->
-  <header class="relative bg-colonial-crema border-b border-colonial-borde overflow-hidden pt-4">
-    <!-- Barra Superior -->
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative z-20 pb-2">
+  <header class="relative bg-gradient-to-b from-[#F2EAE0] via-[#FAF6EE] to-[#F7F3EB] border-b border-colonial-borde overflow-hidden pt-4">
+    
+    <!-- Flores de Buganvilla decorativas en las esquinas superiores -->
+    <div class="absolute -top-6 -left-6 w-36 h-36 opacity-30 pointer-events-none text-4xl select-none">🌸🌺🌿</div>
+    <div class="absolute -top-6 -right-6 w-36 h-36 opacity-30 pointer-events-none text-4xl select-none text-right">🌿🌺🌸</div>
+
+    <!-- Barra Superior de Navegación -->
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative z-20 pb-3">
       <div>
         <span class="text-[9px] uppercase tracking-[0.35em] text-colonial-terracota font-bold block">Tostaduría de Especialidad</span>
         <h1 class="font-serif text-xl md:text-2xl font-black tracking-widest text-colonial-cafeOscuro">ALMA DEL EJE</h1>
       </div>
 
-      <!-- Iconos de Navegación & Carrito -->
       <div class="flex items-center gap-5 text-colonial-cafeTostado">
         <button class="hover:text-colonial-terracota transition-colors" title="Buscar">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </button>
-        <button class="hover:text-colonial-terracota transition-colors" title="Cuenta">
+        <button class="hover:text-colonial-terracota transition-colors" title="Perfil">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
         </button>
         <button class="hover:text-colonial-terracota transition-colors" title="Favoritos">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
         </button>
-        <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-4 py-2 rounded-full transition-all shadow-sm">
+        <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-4 py-2 rounded-full transition-all shadow-md">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
           <span id="cart-count" class="bg-colonial-mostaza text-colonial-cafeOscuro text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
         </button>
       </div>
     </div>
 
-    <!-- Escena Arquitectónica Ilustrada (Fachada Balcones + Yipao) -->
-    <div class="max-w-7xl mx-auto px-6 pt-4 pb-2 relative z-10">
-      <div class="flex flex-col lg:flex-row items-end justify-between gap-6 border-b border-colonial-cafeTostado/20 pb-4">
+    <!-- ESCENARIO PRINCIPAL: Fachada con Balcones de Colores y Willys Cafetero -->
+    <div class="max-w-7xl mx-auto px-6 pt-2 pb-6 relative z-10">
+      
+      <!-- Fachada de Casas Coloniales con Balcones -->
+      <div class="relative w-full rounded-2xl bg-[#EBE1D0]/70 border-2 border-colonial-borde p-6 pb-4 overflow-hidden mb-6 shadow-inner">
         
-        <!-- Título Cosechas -->
-        <div class="mb-2">
-          <h2 class="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-colonial-cafeOscuro">
-            COSECHAS DISPONIBLES
-          </h2>
-          <p class="text-xs md:text-sm text-colonial-textoMuted font-medium mt-1">
-            Sincronizado en tiempo real desde el maestro de tueste
-          </p>
+        <!-- Fila de Balcones de Colores (Estilo Filandia / Salento) -->
+        <div class="grid grid-cols-5 gap-3 mb-4 opacity-90">
+          <div class="h-16 rounded-t-lg bg-[#C84B78] border-b-4 border-colonial-cafeOscuro flex flex-col justify-between p-1.5 shadow-sm text-center">
+            <span class="text-[9px] text-white/80 font-bold uppercase tracking-widest">Balcón Real</span>
+            <div class="flex justify-around text-[10px] text-white"><span>🚪</span><span>🌺</span><span>🚪</span></div>
+          </div>
+          <div class="h-16 rounded-t-lg bg-[#2A5C8A] border-b-4 border-colonial-cafeOscuro flex flex-col justify-between p-1.5 shadow-sm text-center">
+            <span class="text-[9px] text-white/80 font-bold uppercase tracking-widest">La Finca</span>
+            <div class="flex justify-around text-[10px] text-white"><span>🚪</span><span>🌿</span><span>🚪</span></div>
+          </div>
+          <div class="h-16 rounded-t-lg bg-[#C98B32] border-b-4 border-colonial-cafeOscuro flex flex-col justify-between p-1.5 shadow-sm text-center">
+            <span class="text-[9px] text-white/80 font-bold uppercase tracking-widest">El Oasis</span>
+            <div class="flex justify-around text-[10px] text-white"><span>🚪</span><span>🌺</span><span>🚪</span></div>
+          </div>
+          <div class="h-16 rounded-t-lg bg-[#1A382B] border-b-4 border-colonial-cafeOscuro flex flex-col justify-between p-1.5 shadow-sm text-center">
+            <span class="text-[9px] text-white/80 font-bold uppercase tracking-widest">La Colina</span>
+            <div class="flex justify-around text-[10px] text-white"><span>🚪</span><span>🌿</span><span>🚪</span></div>
+          </div>
+          <div class="h-16 rounded-t-lg bg-[#8E382B] border-b-4 border-colonial-cafeOscuro flex flex-col justify-between p-1.5 shadow-sm text-center">
+            <span class="text-[9px] text-white/80 font-bold uppercase tracking-widest">Quindío</span>
+            <div class="flex justify-around text-[10px] text-white"><span>🚪</span><span>🌺</span><span>🚪</span></div>
+          </div>
         </div>
 
-        <!-- Placa Insignia Tradicional -->
-        <div class="flex items-center gap-3 bg-[#EAE0D0] border-2 border-colonial-cafeTostado/30 rounded-xl px-5 py-2.5 shadow-inner">
-          <span class="text-xl">🚙</span>
-          <span class="text-xs font-serif font-black tracking-widest text-colonial-cafeTostado uppercase">
-            100% Arábica de Especialidad
-          </span>
+        <!-- Suelo de Calle Empedrada + Willys Tradicional + Título -->
+        <div class="flex flex-col md:flex-row items-end justify-between gap-4 pt-3 border-t-2 border-dashed border-colonial-cafeTostado/30">
+          <div>
+            <h2 class="font-serif text-3xl md:text-4xl font-black tracking-tight text-colonial-cafeOscuro">
+              COSECHAS DISPONIBLES
+            </h2>
+            <p class="text-xs md:text-sm text-colonial-textoMuted font-medium mt-0.5">
+              Sincronizado en tiempo real desde el maestro de tueste
+            </p>
+          </div>
+
+          <!-- Insignia Jeep Willys Cafetero (Yipao) -->
+          <div class="flex items-center gap-3 bg-[#FAF7F0] border-2 border-colonial-cafeTostado/40 rounded-xl px-4 py-2 shadow-md">
+            <div class="text-2xl">🚙📦</div>
+            <div>
+              <span class="text-[9px] uppercase tracking-widest text-colonial-terracota font-bold block">Jeep Willys Tradicional</span>
+              <span class="text-xs font-serif font-black tracking-wider text-colonial-cafeTostado uppercase">
+                100% Arábica de Especialidad
+              </span>
+            </div>
+          </div>
         </div>
 
       </div>
+
     </div>
   </header>
 
   <!-- ============================================================ -->
-  <!-- 2. CATÁLOGO PRINCIPAL (TARJETAS ESTILO PERGAMINO COLONIAL)   -->
+  <!-- 2. CATÁLOGO PRINCIPAL (TARJETAS CON ARCOS DE HACIENDA)       -->
   <!-- ============================================================ -->
-  <main class="max-w-7xl mx-auto px-6 py-10 flex-grow">
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-grow">
     
     <!-- Grid Dinámico conectado al Google Sheet -->
     <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -162,7 +196,7 @@
   </footer>
 
   <!-- ============================================================ -->
-  <!-- 4. MODAL EXPERIENCIA 360º & DETALLES DEL GOOGLE DOC          -->
+  <!-- 4. MODAL EXPERIENCIA 360º & FICHA DEL GOOGLE DOC             -->
   <!-- ============================================================ -->
   <div id="modal-detail" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
     <div class="bg-colonial-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-colonial-borde flex flex-col md:flex-row max-h-[90vh]">
@@ -267,7 +301,7 @@
       }
     }
 
-    // Renderizado con el estilo visual exacto de tu maqueta
+    // Renderizado con tarjetas de arcos coloniales
     function renderCatalog() {
       const grid = document.getElementById("coffee-grid");
       grid.innerHTML = "";
@@ -277,8 +311,8 @@
         card.className = "card-pergamino rounded-3xl p-6 relative flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
 
         card.innerHTML = `
-          <!-- Decoración Capitán/Balconcito superior central -->
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-colonial-terracota text-white text-[9px] px-3 py-0.5 rounded shadow flex items-center gap-1 font-serif">
+          <!-- Capitán superior estilo balcón colonial -->
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-colonial-terracota text-white text-[10px] px-3.5 py-0.5 rounded shadow-sm flex items-center gap-1 font-serif font-bold">
             <span>🏛️</span>
           </div>
 
@@ -293,16 +327,16 @@
               </span>
             </div>
 
-            <!-- Marco de Imagen Estilo Ventana/Hacienda con botón flotante -->
+            <!-- Marco Estilo Ventanal de Hacienda con Botón -->
             <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-52 bg-[#EFE8DC] border border-colonial-borde flex items-center justify-center group-hover:border-colonial-mostaza transition-colors mb-5">
               <img 
                 src="${item.imagenUrl}" 
                 alt="${item.regionFinca}" 
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
               />
-              <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-end justify-center p-3">
-                <span class="bg-colonial-cafeOscuro/80 backdrop-blur-sm text-colonial-crema text-[10px] font-serif font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow border border-colonial-mostaza/40">
-                  Ver 360° & Historia
+              <div class="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors flex items-end justify-center p-3">
+                <span class="bg-colonial-cafeOscuro/85 backdrop-blur-sm text-colonial-crema text-[10px] font-serif font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow border border-colonial-mostaza/40">
+                  Ver 360° &amp; Historia
                 </span>
               </div>
             </div>
@@ -315,7 +349,7 @@
               ${item.proceso} · ${item.altura}
             </p>
 
-            <!-- Notas de Cata Estilo Botones de Cuero/Terracota -->
+            <!-- Notas de Cata -->
             <div class="flex flex-wrap gap-1.5 mb-6">
               ${item.notasCatas.map(nota => `
                 <span class="bg-[#EAE0D0] text-colonial-cafeTostado text-[11px] font-medium px-3 py-1 rounded-lg border border-colonial-borde/70 flex items-center gap-1">
@@ -344,7 +378,7 @@
               </select>
             </div>
 
-            <!-- Fila de Precio & Botón de Añadir -->
+            <!-- Fila de Precio & Botón de Añadir (Codificación Segura) -->
             <div class="flex items-center justify-between pt-2">
               <span id="price-${item.idLote}" class="font-serif text-2xl font-black text-colonial-cafeOscuro">
                 ${item.precios['250g'].toFixed(2)} €
