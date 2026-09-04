@@ -2,33 +2,47 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tostaduría de Especialidad | Alma del Eje</title>
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Configuración de pantalla y Dynamic Island / Notch para iPhone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <title>Alma del Eje | Café de Especialidad</title>
+  
+  <!-- ============================================================ -->
+  <!-- NATIVO APPLE IOS (Sin necesidad de manifest.json)             -->
+  <!-- ============================================================ -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Alma del Eje" />
+  <meta name="theme-color" content="#1A382B" />
+
+  <!-- Icono oficial de la App para iPhone -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./logo-app.png" />
+  <link rel="icon" type="image/png" href="./logo-app.png" />
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Cinzel, Playfair Display & Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            colonial: {
-              cremaFondo: '#F7F3EB',
-              pergamino: '#FAF7F0',
-              pergaminoOscuro: '#EFE8DC',
-              bordeDoble: '#D8C7B0',
-              bordeOscuro: '#C3B096',
-              cafeTostado: '#4A2818',
-              cafeOscuro: '#2C160B',
-              terracota: '#8E382B',
-              terracotaHover: '#702B1F',
-              mostaza: '#C98B32',
+            eje: {
+              verdeOscuro: '#132E22',
               verdeHacienda: '#1A382B',
+              pergamino: '#FAF7F0',
+              cremaFondo: '#F5EFE6',
+              borde: '#D8C7B0',
+              cafeTostado: '#4A2818',
+              cafeNoche: '#27140A',
+              terracota: '#8E382B',
+              oro: '#C98B32',
               textoMuted: '#6B5E51'
             }
           },
@@ -43,187 +57,142 @@
   </script>
 
   <style>
-    /* Textura de fondo lienzo / pergamino de acuarela */
     body {
-      background-color: #F7F3EB;
-      background-image: 
-        radial-gradient(#4a2818 0.45px, transparent 0.45px),
-        radial-gradient(#4a2818 0.45px, #F7F3EB 0.45px);
-      background-size: 16px 16px;
-      background-position: 0 0, 8px 8px;
+      background-color: #F5EFE6;
+      background-image: radial-gradient(#4a2818 0.4px, transparent 0.4px);
+      background-size: 14px 14px;
+      -webkit-tap-highlight-color: transparent;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Cabecera escénica con la ilustración del pueblo cafetero y el Willys */
-    .hero-banner-eje {
-      background-image: url('./fondo-eje.jpg');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-    }
-
-    /* Tarjetas estilo pergamino de hacienda con marco doble */
-    .card-pergamino-hacienda {
+    .card-app {
       background: #FAF7F0;
-      border: 1.5px solid #D8C7B0;
-      box-shadow: 0 12px 30px -5px rgba(44, 22, 11, 0.10), 0 0 0 5px #FAF7F0, 0 0 0 6.5px #D8C7B0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card-pergamino-hacienda:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 35px -5px rgba(44, 22, 11, 0.18), 0 0 0 5px #FAF7F0, 0 0 0 7px #C98B32;
+      border: 1px solid #D8C7B0;
+      box-shadow: 0 4px 20px rgba(19, 46, 34, 0.08), 0 0 0 4px #FAF7F0, 0 0 0 5px #D8C7B0;
     }
 
-    /* Efecto 3D para el visor del modal */
     .perspective-container { perspective: 1200px; }
     .bag-3d { transform-style: preserve-3d; transition: transform 0.1s ease-out; }
-    
-    .custom-scroll::-webkit-scrollbar { width: 5px; }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #C98B32; border-radius: 4px; }
   </style>
 </head>
 
-<body class="text-colonial-cafeOscuro font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-colonial-mostaza selection:text-white">
+<body class="text-eje-cafeNoche font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-eje-oro selection:text-white">
 
   <!-- ============================================================ -->
-  <!-- 1. BARRA SUPERIOR DE NAVEGACIÓN Y LOGO                       -->
+  <!-- 1. CABECERA CON EL LOGO OFICIAL DE LA APP                    -->
   <!-- ============================================================ -->
-  <nav class="bg-colonial-pergamino/95 backdrop-blur-md border-b border-colonial-bordeDoble sticky top-0 z-40 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-      <div>
-        <span class="text-[9px] uppercase tracking-[0.35em] text-colonial-terracota font-bold block">Tostaduría de Especialidad</span>
-        <h1 class="font-serif text-xl sm:text-2xl font-black tracking-widest text-colonial-cafeOscuro">ALMA DEL EJE</h1>
+  <header class="bg-eje-verdeHacienda text-[#FAF7F0] border-b-2 border-eje-oro sticky top-0 z-40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Logo Oficial & Título -->
+      <div class="flex items-center gap-3">
+        <img src="./logo-app.png" alt="Alma del Eje" class="w-12 h-12 rounded-xl object-contain shadow-md border border-eje-oro/50" onerror="this.style.display='none'" />
+        <div>
+          <span class="text-[8px] uppercase tracking-[0.3em] text-eje-oro font-bold block">Tostaduría de Especialidad</span>
+          <h1 class="font-serif text-lg sm:text-xl font-black tracking-widest text-white leading-none">ALMA DEL EJE</h1>
+        </div>
       </div>
 
-      <!-- Iconos superiores de la maqueta -->
-      <div class="flex items-center gap-4 sm:gap-6 text-colonial-cafeTostado">
-        <button class="hover:text-colonial-terracota transition-colors" title="Buscar Cosecha">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </button>
-        <button class="hover:text-colonial-terracota transition-colors" title="Mi Cuenta">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        </button>
-        <button class="hover:text-colonial-terracota transition-colors" title="Favoritos">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </button>
-        
-        <!-- Botón de Pedido / Carrito -->
-        <button onclick="toggleCart()" class="relative flex items-center gap-2.5 bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-4 py-2.5 rounded-full transition-all shadow-md">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="font-serif text-xs font-bold hidden sm:inline">Pedido</span>
-          <span id="cart-count" class="bg-colonial-mostaza text-colonial-cafeOscuro text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
-        </button>
-      </div>
-    </div>
-  </nav>
+      <!-- Carrito de Compras -->
+      <button onclick="toggleCart()" class="relative flex items-center gap-2 bg-eje-verdeOscuro hover:bg-eje-oro hover:text-eje-cafeNoche text-white px-4 py-2.5 rounded-full border border-eje-oro/40 transition-all shadow-md">
+        <svg class="w-4 h-4 text-eje-oro" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="text-xs font-serif font-bold hidden sm:inline">Pedido</span>
+        <span id="cart-count" class="bg-eje-oro text-eje-cafeNoche text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+      </button>
 
-  <!-- ============================================================ -->
-  <!-- 2. CABECERA ESCÉNICA: CASAS, BALCONES & WILLYS YIPAO         -->
-  <!-- ============================================================ -->
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 w-full">
-    <div class="hero-banner-eje relative w-full h-64 sm:h-80 md:h-96 rounded-3xl border-2 border-colonial-bordeDoble shadow-lg overflow-hidden flex flex-col justify-end p-6 md:p-8">
-      <!-- Gradiente sutil para integrar con el contenido -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
-    </div>
-
-    <!-- Título de Sección & Placa Tradicional -->
-    <div class="pt-8 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-colonial-bordeDoble/60">
-      <div>
-        <h2 class="font-serif text-3xl sm:text-4xl font-black tracking-tight text-colonial-cafeOscuro">
-          COSECHAS DISPONIBLES
-        </h2>
-        <p class="text-xs sm:text-sm text-colonial-textoMuted font-medium mt-1">
-          Sincronizado en tiempo real desde el maestro de tueste
-        </p>
-      </div>
-
-      <!-- Placa Insignia 100% Arábica -->
-      <div class="inline-flex items-center gap-2.5 bg-colonial-pergamino border-2 border-colonial-cafeTostado/30 rounded-2xl px-5 py-2.5 shadow-sm self-start md:self-auto">
-        <span class="text-lg">☕</span>
-        <span class="text-xs font-serif font-black tracking-widest text-colonial-cafeTostado uppercase">
-          100% Arábica de Especialidad
-        </span>
-      </div>
     </div>
   </header>
 
   <!-- ============================================================ -->
-  <!-- 3. CATÁLOGO PRINCIPAL: TARJETAS CON ARCOS DE HACIENDA        -->
+  <!-- 2. TÍTULO PRINCIPAL DE LA APP                                -->
   <!-- ============================================================ -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full">
-    
-    <!-- Grid Dinámico conectado al Google Sheet -->
-    <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Skeletons de carga mientras conecta con Google Sheets -->
-      <div class="animate-pulse card-pergamino-hacienda rounded-3xl h-[560px]"></div>
-      <div class="animate-pulse card-pergamino-hacienda rounded-3xl h-[560px]"></div>
-      <div class="animate-pulse card-pergamino-hacienda rounded-3xl h-[560px]"></div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-2 w-full flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div>
+      <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-eje-verdeOscuro">
+        COSECHAS DISPONIBLES
+      </h2>
+      <p class="text-xs sm:text-sm text-eje-textoMuted font-medium mt-1">
+        Sincronizado en tiempo real desde el maestro de tueste
+      </p>
     </div>
 
+    <div class="inline-flex items-center gap-2 bg-eje-pergamino border border-eje-borde rounded-2xl px-4 py-2 shadow-sm self-start sm:self-auto">
+      <span class="text-sm">☕</span>
+      <span class="text-[11px] sm:text-xs font-serif font-black tracking-wider text-eje-verdeOscuro uppercase">
+        100% Arábica de Especialidad
+      </span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 3. CATÁLOGO DE CAFÉS (RESPONSIVO Y TÁCTIL)                  -->
+  <!-- ============================================================ -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full">
+    <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <!-- Skeletons mientras carga Google Sheets -->
+      <div class="animate-pulse card-app rounded-3xl h-[520px]"></div>
+      <div class="animate-pulse card-app rounded-3xl h-[520px]"></div>
+      <div class="animate-pulse card-app rounded-3xl h-[520px]"></div>
+    </div>
   </main>
 
   <!-- ============================================================ -->
-  <!-- 4. FOOTER TEMÁTICO CON ENLACES HISTÓRICOS DEL EJE            -->
+  <!-- 4. FOOTER TEMÁTICO                                           -->
   <!-- ============================================================ -->
-  <footer class="bg-colonial-cafeOscuro text-[#FAF7F0] border-t-4 border-colonial-mostaza py-6 px-4 sm:px-8 mt-12 shadow-2xl">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs font-serif font-bold tracking-wider">
-      <a href="#" class="hover:text-colonial-mostaza flex items-center gap-2 transition-colors">
-        <span>🏡</span> Nuestra Finca
-      </a>
-      <a href="#" class="hover:text-colonial-mostaza flex items-center gap-2 transition-colors">
-        <span>🚙</span> Historia del Valle de Cocora
-      </a>
-      <a href="#" class="hover:text-colonial-mostaza flex items-center gap-2 transition-colors">
-        <span>🌴</span> Historia del Eje y Palmas
-      </a>
-      <a href="#" class="hover:text-colonial-mostaza flex items-center gap-2 transition-colors">
-        <span>📜</span> Histórico de Cosechas
-      </a>
+  <footer class="bg-eje-verdeOscuro text-[#FAF7F0] border-t-2 border-eje-oro py-6 px-4 sm:px-6 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-serif font-bold">
+      <span class="flex items-center gap-1.5">🏡 Haciendas del Quindío</span>
+      <span class="flex items-center gap-1.5">🚙 Tradición Cafetera</span>
+      <span class="text-white/60 font-sans font-normal text-[11px]">© Alma del Eje S.A.S.</span>
     </div>
   </footer>
 
   <!-- ============================================================ -->
-  <!-- 5. MODAL EXPERIENCIA 360º & FICHA DEL GOOGLE DOC             -->
+  <!-- 5. MODAL 360º & GOOGLE DOCS                                  -->
   <!-- ============================================================ -->
-  <div id="modal-detail" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
-    <div class="bg-colonial-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-colonial-bordeDoble flex flex-col md:flex-row max-h-[92vh]">
+  <div id="modal-detail" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-eje-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border border-eje-borde flex flex-col md:flex-row max-h-[92vh]">
       
-      <!-- Visor 360 Interactivo -->
-      <div class="md:w-1/2 bg-colonial-cafeOscuro p-8 flex flex-col items-center justify-between relative perspective-container select-none">
-        <span class="text-[10px] tracking-widest uppercase bg-colonial-mostaza text-colonial-cafeOscuro px-3 py-1 rounded-full font-bold">
+      <!-- Visor 360 -->
+      <div class="md:w-1/2 bg-eje-verdeOscuro p-6 sm:p-8 flex flex-col items-center justify-between relative perspective-container select-none">
+        <span class="text-[10px] tracking-widest uppercase bg-eje-oro text-eje-cafeNoche px-3 py-1 rounded-full font-bold">
           Visor 360º Interactivo
         </span>
         
-        <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-56 sm:w-64 h-72 sm:h-80 flex items-center justify-center my-4">
-          <img id="modal-img" src="" alt="Empaque de Café" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
+        <div id="bag-container" class="bag-3d cursor-grab active:cursor-grabbing w-52 sm:w-64 h-64 sm:h-72 flex items-center justify-center my-4">
+          <img id="modal-img" src="" alt="Empaque" class="max-h-full max-w-full object-contain filter drop-shadow-2xl pointer-events-none" />
         </div>
         
-        <p class="text-xs text-[#FAF7F0]/70">🔄 Arrastra con el ratón o el dedo para girar el empaque</p>
+        <p class="text-[11px] text-[#FAF7F0]/70">🔄 Arrastra con el dedo o ratón para rotar</p>
       </div>
 
-      <!-- Ficha Técnica e Historia de Google Docs -->
-      <div class="md:w-1/2 p-8 overflow-y-auto flex flex-col justify-between">
+      <!-- Ficha Google Doc -->
+      <div class="md:w-1/2 p-6 sm:p-8 overflow-y-auto flex flex-col justify-between">
         <div>
           <div class="flex justify-between items-start">
-            <span id="modal-origen" class="text-xs uppercase tracking-widest text-colonial-terracota font-bold font-serif"></span>
-            <button onclick="closeModal()" class="text-2xl text-colonial-cafeTostado/50 hover:text-colonial-cafeTostado font-bold">&times;</button>
+            <span id="modal-origen" class="text-xs uppercase tracking-widest text-eje-terracota font-bold font-serif"></span>
+            <button onclick="closeModal()" class="text-2xl text-eje-cafeTostado/50 hover:text-eje-cafeTostado font-bold">&times;</button>
           </div>
           
-          <h3 id="modal-title" class="font-serif text-2xl font-black text-colonial-cafeOscuro mt-1 mb-1"></h3>
-          <p id="modal-specs" class="text-xs text-colonial-textoMuted mb-4 font-medium"></p>
+          <h3 id="modal-title" class="font-serif text-xl sm:text-2xl font-black text-eje-verdeOscuro mt-1 mb-1"></h3>
+          <p id="modal-specs" class="text-xs text-eje-textoMuted mb-4"></p>
 
-          <h4 class="text-xs font-bold uppercase tracking-wider text-colonial-cafeTostado mb-2 border-b border-colonial-bordeDoble pb-1 font-serif">
-            Historia &amp; Perfil de Cosecha (Google Doc)
+          <h4 class="text-xs font-bold uppercase tracking-wider text-eje-verdeOscuro mb-2 border-b border-eje-borde pb-1 font-serif">
+            Historia &amp; Ficha de Cosecha
           </h4>
-          <p id="modal-story" class="text-xs sm:text-sm text-colonial-cafeOscuro/85 leading-relaxed font-light whitespace-pre-line"></p>
+          <p id="modal-story" class="text-xs sm:text-sm text-eje-cafeNoche/80 leading-relaxed font-light whitespace-pre-line"></p>
         </div>
 
-        <div class="mt-6 pt-4 border-t border-colonial-bordeDoble flex items-center justify-between">
+        <div class="mt-6 pt-4 border-t border-eje-borde flex items-center justify-between">
           <div>
-            <span class="text-[10px] text-colonial-textoMuted block">Precio desde</span>
-            <span id="modal-price" class="font-serif text-2xl font-black text-colonial-cafeOscuro"></span>
+            <span class="text-[10px] text-eje-textoMuted block">Precio desde</span>
+            <span id="modal-price" class="font-serif text-xl sm:text-2xl font-bold text-eje-verdeOscuro"></span>
           </div>
-          <button onclick="closeModal()" class="bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-6 py-2.5 rounded-xl text-xs font-serif font-bold transition-all shadow">
-            Volver a la Tienda
+          <button onclick="closeModal()" class="bg-eje-verdeHacienda hover:bg-eje-verdeOscuro text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all">
+            Cerrar
           </button>
         </div>
       </div>
@@ -232,24 +201,24 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 6. DRAWER LATERAL DEL CARRITO DE COMPRAS                    -->
+  <!-- 6. DRAWER DEL CARRITO DE COMPRAS                            -->
   <!-- ============================================================ -->
   <div id="cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
-    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-colonial-pergamino p-6 shadow-2xl flex flex-col justify-between border-l-2 border-colonial-bordeDoble">
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-eje-pergamino p-6 shadow-2xl flex flex-col justify-between border-l border-eje-borde">
       <div>
-        <div class="flex items-center justify-between pb-4 border-b border-colonial-bordeDoble">
-          <h4 class="font-serif text-lg font-bold text-colonial-cafeOscuro">Tu Reserva de Tueste</h4>
-          <button onclick="toggleCart()" class="text-colonial-cafeTostado/50 hover:text-colonial-cafeTostado text-2xl font-bold">&times;</button>
+        <div class="flex items-center justify-between pb-4 border-b border-eje-borde">
+          <h4 class="font-serif text-lg font-bold text-eje-verdeOscuro">Tu Pedido</h4>
+          <button onclick="toggleCart()" class="text-eje-cafeTostado/50 hover:text-eje-cafeTostado text-2xl font-bold">&times;</button>
         </div>
         <div id="cart-items" class="mt-4 space-y-3 max-h-[60vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
 
-      <div class="border-t border-colonial-bordeDoble pt-4 space-y-4">
-        <div class="flex justify-between items-center text-lg font-bold text-colonial-cafeOscuro">
+      <div class="border-t border-eje-borde pt-4 space-y-4">
+        <div class="flex justify-between items-center text-lg font-bold text-eje-verdeOscuro">
           <span class="font-serif">Total</span>
-          <span id="cart-total" class="font-serif text-xl font-black">0.00 €</span>
+          <span id="cart-total" class="font-serif text-xl font-bold">0.00 €</span>
         </div>
-        <button onclick="checkout()" id="btn-checkout" class="w-full bg-colonial-cafeTostado hover:bg-colonial-terracota text-white py-4 rounded-xl font-serif text-xs font-bold tracking-wider uppercase transition-all shadow-md">
+        <button onclick="checkout()" id="btn-checkout" class="w-full bg-eje-verdeHacienda hover:bg-eje-verdeOscuro text-white py-3.5 rounded-xl font-medium tracking-wide transition-all shadow-md text-sm">
           Confirmar y Tostar Pedido
         </button>
       </div>
@@ -257,7 +226,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 7. LÓGICA JAVASCRIPT DINÁMICA & APPS SCRIPT                  -->
+  <!-- 7. LÓGICA JAVASCRIPT & GOOGLE SHEETS                        -->
   <!-- ============================================================ -->
   <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP9TxsoNYZvul3p37BIvlBQyHr6_O8zEarYxJ-JRFisEC0eAok7l8W4X8NBkzQptb8xg/exec";
@@ -265,7 +234,6 @@
     let catalogo = [];
     let carrito = [];
 
-    // Carga de catálogo en tiempo real desde Google Sheets
     async function loadCatalog() {
       const grid = document.getElementById("coffee-grid");
       try {
@@ -276,65 +244,59 @@
           catalogo = json.data;
           renderCatalog();
         } else {
-          grid.innerHTML = `<p class="col-span-3 text-center py-12 text-colonial-textoMuted font-serif">No hay cosechas activas en el inventario.</p>`;
+          grid.innerHTML = `<p class="col-span-3 text-center py-12 text-eje-textoMuted font-serif">No hay cafés disponibles en este momento.</p>`;
         }
       } catch (err) {
-        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-colonial-terracota font-bold">Error conectando con la base de datos de Google Sheets.</div>`;
+        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-eje-terracota font-bold">Error conectando con el maestro de inventario.</div>`;
       }
     }
 
-    // Renderizado de tarjetas con arcos de hacienda idénticas a tu diseño
     function renderCatalog() {
       const grid = document.getElementById("coffee-grid");
       grid.innerHTML = "";
 
       catalogo.forEach(item => {
         const card = document.createElement("div");
-        card.className = "card-pergamino-hacienda rounded-3xl p-6 relative flex flex-col justify-between group";
+        card.className = "card-app rounded-3xl p-5 sm:p-6 relative flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl";
 
         card.innerHTML = `
-          <!-- Capitán superior estilo balcón colonial -->
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-colonial-terracota text-white text-[10px] px-3.5 py-0.5 rounded shadow flex items-center gap-1 font-serif font-bold">
-            <span>🏛️</span>
-          </div>
-
           <div>
-            <!-- Encabezado de la Tarjeta -->
-            <div class="flex justify-between items-center mb-3 pt-1">
-              <span class="text-[11px] uppercase tracking-wider font-bold text-colonial-mostaza font-serif">
+            <!-- Encabezado -->
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-eje-oro font-serif">
                 ${item.pais} · ${item.variedad}
               </span>
-              <span class="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-[#E8DFD1] text-colonial-cafeTostado">
+              <span class="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-[#E8DFD1] text-eje-verdeOscuro">
                 ${item.estado}
               </span>
             </div>
 
-            <!-- Ventana / Arco de Hacienda con Botón Flotante 360 -->
-            <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-52 bg-colonial-pergaminoOscuro border border-colonial-bordeDoble flex items-center justify-center group-hover:border-colonial-mostaza transition-colors mb-4 shadow-inner">
+            <!-- Ventana del Empaque (Abre Modal 360) -->
+            <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-48 sm:h-52 bg-[#EFE8DC] border border-eje-borde flex items-center justify-center group-hover:border-eje-oro transition-colors mb-4">
               <img 
                 src="${item.imagenUrl}" 
                 alt="${item.regionFinca}" 
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
               />
               <div class="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors flex items-end justify-center p-3">
-                <span class="bg-colonial-cafeOscuro/85 backdrop-blur-sm text-[#FAF7F0] text-[10px] font-serif font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow border border-colonial-mostaza/40">
+                <span class="bg-eje-verdeOscuro/85 backdrop-blur-sm text-[#FAF7F0] text-[10px] font-serif font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow border border-eje-oro/40">
                   Ver 360° &amp; Historia
                 </span>
               </div>
             </div>
 
-            <!-- Título y Datos de Finca -->
-            <h3 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-xl font-bold text-colonial-cafeOscuro hover:text-colonial-terracota transition-colors leading-tight mb-1">
+            <!-- Título y Datos -->
+            <h3 onclick="openModal('${item.idLote}')" class="cursor-pointer font-serif text-lg sm:text-xl font-bold text-eje-verdeOscuro hover:text-eje-terracota transition-colors leading-tight mb-1">
               ${item.regionFinca}
             </h3>
-            <p class="text-xs text-colonial-textoMuted mb-4">
+            <p class="text-xs text-eje-textoMuted mb-3">
               ${item.proceso} · ${item.altura}
             </p>
 
-            <!-- Notas de Cata con Icono de Taza -->
+            <!-- Notas de Cata -->
             <div class="flex flex-wrap gap-1.5 mb-5">
               ${item.notasCatas.map(nota => `
-                <span class="bg-[#EAE0D0] text-colonial-cafeTostado text-[11px] font-medium px-3 py-1 rounded-lg border border-colonial-bordeDoble flex items-center gap-1">
+                <span class="bg-[#EAE0D0] text-eje-cafeTostado text-[10px] sm:text-[11px] font-medium px-2.5 py-1 rounded-lg border border-eje-borde flex items-center gap-1">
                   <span>☕</span> ${nota}
                 </span>
               `).join('')}
@@ -342,17 +304,15 @@
           </div>
 
           <div>
-            <!-- Selectores de Gramaje y Molienda -->
-            <div class="space-y-3 pt-3 border-t border-colonial-bordeDoble/60 mb-4">
-              <!-- Selector Gramajes -->
+            <!-- Selectores de Formato y Molienda -->
+            <div class="space-y-2.5 pt-3 border-t border-eje-borde mb-4">
               <div class="grid grid-cols-3 gap-2" id="format-${item.idLote}">
-                <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-colonial-cafeTostado bg-colonial-cafeTostado text-white transition-all">250g</button>
-                <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-colonial-bordeDoble bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all">500g</button>
-                <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-colonial-bordeDoble bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all">1 Kg</button>
+                <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-verdeHacienda bg-eje-verdeHacienda text-white transition-all">250g</button>
+                <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-borde bg-[#FAF7F0] text-eje-verdeOscuro hover:border-eje-verdeHacienda transition-all">500g</button>
+                <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-borde bg-[#FAF7F0] text-eje-verdeOscuro hover:border-eje-verdeHacienda transition-all">1 Kg</button>
               </div>
 
-              <!-- Selector Molienda -->
-              <select id="grind-${item.idLote}" class="w-full bg-[#FAF7F0] border-2 border-colonial-bordeDoble rounded-xl px-3 py-2 text-xs font-medium text-colonial-cafeOscuro focus:outline-none focus:border-colonial-cafeTostado">
+              <select id="grind-${item.idLote}" class="w-full bg-[#FAF7F0] border-2 border-eje-borde rounded-xl px-3 py-1.5 text-xs font-medium text-eje-cafeNoche focus:outline-none focus:border-eje-verdeHacienda">
                 <option value="Grano Entero">Grano Entero (Tueste Fresco)</option>
                 <option value="Espresso">Molido Fino (Espresso / Moka)</option>
                 <option value="Filtro V60/Chemex">Molido Medio (Filtro / V60)</option>
@@ -360,12 +320,12 @@
               </select>
             </div>
 
-            <!-- Fila Precio & Botón de Añadir -->
+            <!-- Precio & Botón Añadir -->
             <div class="flex items-center justify-between pt-1">
-              <span id="price-${item.idLote}" class="font-serif text-2xl font-black text-colonial-cafeOscuro">
+              <span id="price-${item.idLote}" class="font-serif text-xl sm:text-2xl font-black text-eje-verdeOscuro">
                 ${item.precios['250g'].toFixed(2)} €
               </span>
-              <button onclick="addToCart('${item.idLote}')" class="bg-colonial-cafeTostado hover:bg-colonial-terracota text-white px-5 py-2.5 rounded-xl font-serif text-xs font-bold tracking-wider transition-all flex items-center gap-2 shadow-sm">
+              <button onclick="addToCart('${item.idLote}')" class="bg-eje-verdeHacienda hover:bg-eje-verdeOscuro text-white px-4 sm:px-5 py-2 rounded-xl font-serif text-xs font-bold tracking-wider transition-all flex items-center gap-1.5 shadow-sm">
                 <span>☕</span> Añadir
               </button>
             </div>
@@ -381,16 +341,15 @@
     function setFormat(idLote, format, price) {
       const container = document.getElementById(`format-${idLote}`);
       container.querySelectorAll("button").forEach(b => {
-        b.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-colonial-bordeDoble bg-[#FAF7F0] text-colonial-cafeTostado hover:border-colonial-cafeTostado transition-all";
+        b.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-borde bg-[#FAF7F0] text-eje-verdeOscuro hover:border-eje-verdeHacienda transition-all";
       });
-      event.target.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-colonial-cafeTostado bg-colonial-cafeTostado text-white transition-all";
+      event.target.className = "py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-verdeHacienda bg-eje-verdeHacienda text-white transition-all";
       document.getElementById(`price-${idLote}`).innerText = price.toFixed(2) + " €";
-      const card = container.closest('.card-pergamino-hacienda');
+      const card = container.closest('.card-app');
       card.dataset.selectedFormat = format;
       card.dataset.selectedPrice = price;
     }
 
-    // Modal 360 e Historia
     function openModal(idLote) {
       const item = catalogo.find(c => c.idLote === idLote);
       if(!item) return;
@@ -413,7 +372,7 @@
       setTimeout(() => modal.classList.add("hidden"), 300);
     }
 
-    // Rotación 360 Interactiva
+    // Rotación 360
     const bagContainer = document.getElementById("bag-container");
     let isDragging = false, startX = 0, currentRotY = 0;
 
@@ -437,10 +396,10 @@
       startX = e.touches[0].clientX;
     });
 
-    // Gestión del Carrito
+    // Carrito
     function addToCart(idLote) {
       const coffee = catalogo.find(c => c.idLote === idLote);
-      const card = document.getElementById(`format-${idLote}`).closest('.card-pergamino-hacienda');
+      const card = document.getElementById(`format-${idLote}`).closest('.card-app');
       const format = card.dataset.selectedFormat || "250g";
       const price = parseFloat(card.dataset.selectedPrice) || coffee.precios["250g"];
       const grind = document.getElementById(`grind-${idLote}`).value;
@@ -474,19 +433,19 @@
         const subtotal = item.precioUnitario * item.cantidad;
         total += subtotal;
         container.innerHTML += `
-          <div class="bg-[#FAF7F0] p-4 rounded-2xl border border-colonial-bordeDoble flex justify-between items-start">
+          <div class="bg-[#FAF7F0] p-3.5 rounded-2xl border border-eje-borde flex justify-between items-start">
             <div>
-              <h5 class="font-serif font-bold text-sm text-colonial-cafeOscuro">${item.finca}</h5>
-              <p class="text-xs text-colonial-textoMuted">${item.formato} · ${item.molienda}</p>
-              <div class="flex items-center gap-3 mt-3">
+              <h5 class="font-serif font-bold text-sm text-eje-verdeOscuro">${item.finca}</h5>
+              <p class="text-[11px] text-eje-textoMuted">${item.formato} · ${item.molienda}</p>
+              <div class="flex items-center gap-2.5 mt-2.5">
                 <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded bg-[#EAE0D0] text-xs font-bold">-</button>
                 <span class="text-xs font-bold">${item.cantidad}</span>
                 <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded bg-[#EAE0D0] text-xs font-bold">+</button>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-sm font-bold font-serif text-colonial-cafeOscuro">${subtotal.toFixed(2)} €</span>
-              <button onclick="removeItem(${index})" class="block text-xs text-colonial-terracota mt-2 font-semibold">Eliminar</button>
+              <span class="text-xs font-bold font-serif text-eje-verdeOscuro">${subtotal.toFixed(2)} €</span>
+              <button onclick="removeItem(${index})" class="block text-[11px] text-eje-terracota mt-2 font-semibold">Eliminar</button>
             </div>
           </div>
         `;
