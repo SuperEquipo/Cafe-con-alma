@@ -6,15 +6,19 @@
   
   <title>Alma del Eje | Café de Especialidad</title>
   
-  <!-- Configuración PWA Nativa para iPhone (iOS) -->
+  <!-- ============================================================ -->
+  <!-- ICONO Y PWA PARA PANTALLA DE INICIO EN IPHONE (IOS)          -->
+  <!-- ============================================================ -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Alma del Eje" />
-  <meta name="theme-color" content="#2C160B" />
+  <meta name="theme-color" content="#FAF7F0" />
 
-  <!-- Logo de la App para iOS -->
-  <link rel="apple-touch-icon" href="./logo-app.png" />
+  <!-- Rutas directas para el icono del iPhone -->
+  <link rel="apple-touch-icon" href="https://superequipo.github.io/Cafe-con-alma/logo-app.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./logo-app.png" />
+  <link rel="apple-touch-icon-precomposed" href="./logo-app.png" />
   <link rel="icon" type="image/png" href="./logo-app.png" />
 
   <!-- Tailwind CSS -->
@@ -30,9 +34,10 @@
         extend: {
           colors: {
             eje: {
+              cremaFondo: '#F7F3EB',
               pergamino: '#FAF7F0',
               pergaminoOscuro: '#EFE8DC',
-              bordeDoble: '#D3C2A9',
+              bordeDoble: '#D8C7B0',
               madera: '#4A2818',
               cafeNoche: '#2C160B',
               terracota: '#8E382B',
@@ -51,6 +56,7 @@
   </script>
 
   <style>
+    /* Textura de fondo pergamino de alta gama */
     body {
       background-color: #F7F3EB;
       background-image: 
@@ -63,24 +69,16 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Fondo superior con la ilustración completa de los balcones y el Willys */
-    .header-escenico {
-      background-image: url('./fondo-eje.jpg');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-    }
-
-    /* Tarjetas estilo pergamino colonial con marco doble */
+    /* Tarjetas estilo pergamino colonial con doble marco */
     .card-hacienda {
       background: #FAF7F0;
-      border: 1.5px solid #D3C2A9;
-      box-shadow: 0 12px 30px -5px rgba(44, 22, 11, 0.12), 0 0 0 5px #FAF7F0, 0 0 0 6.5px #D3C2A9;
+      border: 1.5px solid #D8C7B0;
+      box-shadow: 0 8px 24px -4px rgba(44, 22, 11, 0.08), 0 0 0 4px #FAF7F0, 0 0 0 5.5px #D8C7B0;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card-hacienda:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 35px -5px rgba(44, 22, 11, 0.18), 0 0 0 5px #FAF7F0, 0 0 0 7px #C98B32;
+      box-shadow: 0 16px 32px -4px rgba(44, 22, 11, 0.14), 0 0 0 4px #FAF7F0, 0 0 0 6px #C98B32;
     }
 
     .perspective-container { perspective: 1200px; }
@@ -93,21 +91,18 @@
 <body class="text-eje-cafeNoche font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-eje-oro selection:text-white">
 
   <!-- ============================================================ -->
-  <!-- 1. CABECERA: LOGO OFICIAL + NAVEGACIÓN                       -->
+  <!-- 1. CABECERA LIMPIA (SIN LOGO INTERNO)                        -->
   <!-- ============================================================ -->
   <nav class="bg-[#FAF7F0]/95 backdrop-blur-md border-b border-eje-bordeDoble sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logo Oficial & Nombre de Marca -->
-      <div class="flex items-center gap-3">
-        <img src="./logo-app.png" alt="Alma del Eje" class="w-12 h-12 rounded-xl object-contain shadow-md border border-eje-oro/40 bg-white" onerror="this.src='./filandia-reserva.png';" />
-        <div>
-          <span class="text-[9px] uppercase tracking-[0.35em] text-eje-terracota font-bold block font-sans">Tostaduría de Especialidad</span>
-          <h1 class="font-serif text-xl sm:text-2xl font-black tracking-widest text-eje-cafeNoche leading-none">ALMA DEL EJE</h1>
-        </div>
+      <!-- Título de Marca -->
+      <div>
+        <span class="text-[9px] uppercase tracking-[0.35em] text-eje-terracota font-bold block font-sans">Tostaduría de Especialidad</span>
+        <h1 class="font-serif text-xl sm:text-2xl font-black tracking-widest text-eje-cafeNoche leading-none">ALMA DEL EJE</h1>
       </div>
 
-      <!-- Iconos y Botón de Carrito -->
+      <!-- Iconos y Carrito -->
       <div class="flex items-center gap-4 sm:gap-6 text-eje-madera">
         <button class="hover:text-eje-terracota transition-colors" title="Buscar">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -130,53 +125,41 @@
   </nav>
 
   <!-- ============================================================ -->
-  <!-- 2. ESCENARIO ILUSTRADO (CASAS COLONIALES & JEEP WILLYS)      -->
+  <!-- 2. TÍTULO DE SECCIÓN Y BADGE                                 -->
   <!-- ============================================================ -->
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 w-full">
-    
-    <!-- Cuadro de la Ilustración -->
-    <div class="header-escenico relative w-full h-64 sm:h-80 md:h-96 rounded-3xl border-2 border-eje-bordeDoble shadow-xl overflow-hidden flex flex-col justify-end p-6 md:p-8">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 pt-8 pb-4 w-full flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-eje-bordeDoble/60">
+    <div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-black tracking-tight text-eje-cafeNoche">
+        COSECHAS DISPONIBLES
+      </h2>
+      <p class="text-xs sm:text-sm text-eje-textoMuted font-medium mt-1">
+        Sincronizado en tiempo real desde el maestro de tueste
+      </p>
     </div>
 
-    <!-- Título de Sección & Placa 100% Arábica -->
-    <div class="pt-8 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-eje-bordeDoble/60">
-      <div>
-        <h2 class="font-serif text-3xl sm:text-4xl font-black tracking-tight text-eje-cafeNoche">
-          COSECHAS DISPONIBLES
-        </h2>
-        <p class="text-xs sm:text-sm text-eje-textoMuted font-medium mt-1">
-          Sincronizado en tiempo real desde el maestro de tueste
-        </p>
-      </div>
-
-      <!-- Placa de Tradición -->
-      <div class="inline-flex items-center gap-2.5 bg-[#FAF7F0] border-2 border-eje-madera/30 rounded-2xl px-5 py-2.5 shadow-sm self-start md:self-auto">
-        <span class="text-lg">☕</span>
-        <span class="text-xs font-serif font-black tracking-widest text-eje-madera uppercase">
-          100% Arábica de Especialidad
-        </span>
-      </div>
+    <!-- Placa Tradicional 100% Arábica -->
+    <div class="inline-flex items-center gap-2.5 bg-[#FAF7F0] border-2 border-eje-madera/30 rounded-2xl px-5 py-2.5 shadow-sm self-start md:self-auto">
+      <span class="text-lg">☕</span>
+      <span class="text-xs font-serif font-black tracking-widest text-eje-madera uppercase">
+        100% Arábica de Especialidad
+      </span>
     </div>
-  </header>
+  </section>
 
   <!-- ============================================================ -->
-  <!-- 3. CATÁLOGO: TARJETAS CON ARCOS DE HACIENDA                  -->
+  <!-- 3. CATÁLOGO PRINCIPAL (TARJETAS DINÁMICAS ESTILO HACIENDA)  -->
   <!-- ============================================================ -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full">
-    
-    <!-- Grid Dinámico conectado al Google Sheet -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 flex-grow w-full">
     <div id="coffee-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Skeletons de carga -->
+      <!-- Skeletons mientras conecta con Google Sheets -->
       <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
       <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
       <div class="animate-pulse card-hacienda rounded-3xl h-[560px]"></div>
     </div>
-
   </main>
 
   <!-- ============================================================ -->
-  <!-- 4. FOOTER TEMÁTICO DE NAVEGACIÓN HISTÓRICA                   -->
+  <!-- 4. FOOTER TEMÁTICO CON ENLACES HISTÓRICOS                    -->
   <!-- ============================================================ -->
   <footer class="bg-eje-cafeNoche text-[#FAF7F0] border-t-4 border-eje-oro py-6 px-4 sm:px-8 mt-12 shadow-2xl">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6 text-xs font-serif font-bold tracking-wider">
@@ -196,12 +179,12 @@
   </footer>
 
   <!-- ============================================================ -->
-  <!-- 5. MODAL VISOR 360º & FICHA DEL GOOGLE DOC                   -->
+  <!-- 5. MODAL VISOR 360º & GOOGLE DOCS                            -->
   <!-- ============================================================ -->
   <div id="modal-detail" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
     <div class="bg-eje-pergamino max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-eje-bordeDoble flex flex-col md:flex-row max-h-[92vh]">
       
-      <!-- Visor 360 Interactivo -->
+      <!-- Visor 360 -->
       <div class="md:w-1/2 bg-eje-cafeNoche p-8 flex flex-col items-center justify-between relative perspective-container select-none">
         <span class="text-[10px] tracking-widest uppercase bg-eje-oro text-eje-cafeNoche px-3 py-1 rounded-full font-bold">
           Visor 360º Interactivo
@@ -246,7 +229,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 6. DRAWER DEL CARRITO DE COMPRAS                            -->
+  <!-- 6. DRAWER DEL CARRITO                                        -->
   <!-- ============================================================ -->
   <div id="cart-drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-eje-pergamino p-6 shadow-2xl flex flex-col justify-between border-l-2 border-eje-bordeDoble">
@@ -271,7 +254,7 @@
   </div>
 
   <!-- ============================================================ -->
-  <!-- 7. LÓGICA JAVASCRIPT DINÁMICA & APPS SCRIPT                  -->
+  <!-- 7. LÓGICA DINÁMICA & APPS SCRIPT                            -->
   <!-- ============================================================ -->
   <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP9TxsoNYZvul3p37BIvlBQyHr6_O8zEarYxJ-JRFisEC0eAok7l8W4X8NBkzQptb8xg/exec";
@@ -279,7 +262,6 @@
     let catalogo = [];
     let carrito = [];
 
-    // Carga de catálogo en tiempo real desde Google Sheets
     async function loadCatalog() {
       const grid = document.getElementById("coffee-grid");
       try {
@@ -297,7 +279,6 @@
       }
     }
 
-    // Renderizado exacto con el estilo de la maqueta
     function renderCatalog() {
       const grid = document.getElementById("coffee-grid");
       grid.innerHTML = "";
@@ -323,7 +304,7 @@
               </span>
             </div>
 
-            <!-- Ventana / Arco de Hacienda con Botón Flotante 360 -->
+            <!-- Ventana / Arco de Hacienda con Botón 360 -->
             <div onclick="openModal('${item.idLote}')" class="cursor-pointer relative rounded-2xl overflow-hidden h-52 bg-eje-pergaminoOscuro border border-eje-bordeDoble flex items-center justify-center group-hover:border-eje-oro transition-colors mb-4 shadow-inner">
               <img 
                 src="${item.imagenUrl}" 
@@ -358,14 +339,12 @@
           <div>
             <!-- Selectores de Gramaje y Molienda -->
             <div class="space-y-3 pt-3 border-t border-eje-bordeDoble/60 mb-4">
-              <!-- Selector Gramajes -->
               <div class="grid grid-cols-3 gap-2" id="format-${item.idLote}">
                 <button onclick="setFormat('${item.idLote}', '250g', ${item.precios['250g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-madera bg-eje-madera text-white transition-all">250g</button>
                 <button onclick="setFormat('${item.idLote}', '500g', ${item.precios['500g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-bordeDoble bg-[#FAF7F0] text-eje-madera hover:border-eje-madera transition-all">500g</button>
                 <button onclick="setFormat('${item.idLote}', '1000g', ${item.precios['1000g']})" class="py-1.5 text-xs font-serif font-bold rounded-lg border-2 border-eje-bordeDoble bg-[#FAF7F0] text-eje-madera hover:border-eje-madera transition-all">1 Kg</button>
               </div>
 
-              <!-- Selector Molienda -->
               <select id="grind-${item.idLote}" class="w-full bg-[#FAF7F0] border-2 border-eje-bordeDoble rounded-xl px-3 py-2 text-xs font-medium text-eje-cafeNoche focus:outline-none focus:border-eje-madera">
                 <option value="Grano Entero">Grano Entero (Tueste Fresco)</option>
                 <option value="Espresso">Molido Fino (Espresso / Moka)</option>
@@ -404,7 +383,6 @@
       card.dataset.selectedPrice = price;
     }
 
-    // Modal 360 e Historia
     function openModal(idLote) {
       const item = catalogo.find(c => c.idLote === idLote);
       if(!item) return;
